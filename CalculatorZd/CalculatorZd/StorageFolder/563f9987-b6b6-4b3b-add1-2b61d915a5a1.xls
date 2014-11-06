@@ -1,0 +1,107 @@
+<div>
+	<table cellspacing="0" rules="all" border="1" style="border-collapse:collapse;">
+		<tr>
+			<th scope="col">ID</th><th scope="col">Подрод Вагона</th><th scope="col">Количество вагонов</th><th scope="col">Количество контейнеров</th><th scope="col">CountRows</th>
+		</tr><tr>
+			<td>1</td><td>Крытые</td><td>1</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>2</td><td>Крытые</td><td>1</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>3</td><td>Крытые</td><td>1</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>4</td><td>Крытые</td><td>2</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>5</td><td>Крытые</td><td>3</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>6</td><td>Крытые</td><td>1</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>7</td><td>Крытые</td><td>2</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>8</td><td>Крытые</td><td>1</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>9</td><td>Крытые</td><td>1</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>10</td><td>Крытые</td><td>1</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>11</td><td>Рефрижераторы ос</td><td>1</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>12</td><td>Крытые</td><td>1</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>13</td><td>Крытые</td><td>1</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>14</td><td>Крытые</td><td>1</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>15</td><td>Крытые</td><td>1</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>16</td><td>Крытые</td><td>1</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>17</td><td>Рефрижераторы ос</td><td>1</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>18</td><td>Крытые</td><td>1</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>19</td><td>Крытые</td><td>1</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>20</td><td>Крытые</td><td>1</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>21</td><td>Крытые</td><td>1</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>22</td><td>Крытые</td><td>6</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>23</td><td>Крытые</td><td>1</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>24</td><td>Крытые</td><td>1</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>25</td><td>Крытые</td><td>2</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>26</td><td>Крытые</td><td>2</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>27</td><td>Крытые</td><td>3</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>28</td><td>Крытые</td><td>3</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>29</td><td>Рефрижераторы ос</td><td>1</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>30</td><td>Крытые</td><td>1</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>31</td><td>Крытые</td><td>2</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>32</td><td>Крытые</td><td>1</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>33</td><td>Рефрижераторы ос</td><td>1</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>34</td><td>Крытые</td><td>2</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>35</td><td>Крытые</td><td>4</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>36</td><td>Крытые</td><td>1</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>37</td><td>Крытые</td><td>1</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>38</td><td>Крытые</td><td>1</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>39</td><td>Крытые</td><td>1</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>40</td><td>Крытые</td><td>3</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>41</td><td>Крытые</td><td>2</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>42</td><td>Рефрижераторы ос</td><td>1</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>43</td><td>Крытые</td><td>1</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>44</td><td>Крытые</td><td>1</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>45</td><td>Рефрижераторы ос</td><td>1</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>46</td><td>Крытые</td><td>2</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>47</td><td>Крытые</td><td>1</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>48</td><td>Крытые</td><td>1</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>49</td><td>Крытые</td><td>1</td><td>0</td><td>50</td>
+		</tr><tr>
+			<td>50</td><td>Крытые</td><td>3</td><td>0</td><td>50</td>
+		</tr>
+	</table>
+</div>

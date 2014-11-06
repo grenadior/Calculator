@@ -1,0 +1,106 @@
+﻿<tr data-bindonce data-bo-id="e.id" data-bo-class="{gridRowColor: $even}" data-ng-repeat="e in vm.searchResult">
+    <td>
+        <a name="someFakeAnchor"></a>
+        <span style="margin-top: 10px;">
+            <input type="checkbox">
+        </span>
+    </td>
+    <td>
+        <div class="gridCell directionText">
+			<div style="font-weight: bold;">RUS</div>
+            <a
+                data-bo-title="'посмотреть маршрут ' + e.from.city +' - ' + e.to.city"
+                data-bo-text="e.distance + ' км'"
+                target="_blank" style="color: #358B0A;"></a>
+            <br>
+        </div>
+        <div class="cellBorder"></div>
+    </td>
+    <td>
+        <div class="gridCell">
+            <div>
+                <span
+                    data-bo-title="e.truck.details"
+                    data-bo-text="e.truck.details"
+                style="font-weight: bold;"></span>
+            </div>
+            <span
+                data-bo-title="'загр:' + e.truck.load"
+                data-bo-text="'загр:' + e.truck.load"
+            class="noteText"></span>
+            <span
+                data-bo-title="'выгр:' + e.truck.unload"
+                data-bo-text="'выгр:' + e.truck.unload"
+                class="noteText"></span>
+            <div class="noteText"
+                data-bo-text="e.truck.note">
+            </div>
+        </div>
+        <div class="cellBorder"></div>
+    </td>
+    <td id="loadDetailsCell">
+        <div class="gridCell">
+			<div>
+                <div>
+                    <div style="display: table-cell;">
+                        <div style="display: table-cell;"></div>
+                        <b data-bo-text="e.load.weight"></b> / <b data-bo-text="e.load.volume"></b>
+                    </div>
+                </div>
+                <div style="clear: both;">
+                </div>
+			    <div style="float: left; padding-right: 5px;"
+                 data-bo-text="e.load.name">
+                </div>
+                <div style="float: left;"></div>
+                <div style="clear: both;"></div>
+                <div class="noteText" style="white-space: nowrap; float: left;"></div>
+            </div>
+        </div>
+        <div class="cellBorder"></div>
+    </td>
+    <td>
+        <div class="gridCell">
+			<div>
+			    <span class="lblCityNameMain" style="white-space: nowrap"
+                 data-bo-text="e.from.city"></span>
+			    <span class="noteText" style="white-space: nowrap;"
+			          data-bo-show="e.from.region"
+                      data-bo-text="e.from.region"></span>
+                <div>
+                    <span data-bo-show="e.from.street"
+                     data-bo-text="e.from.street"></span>
+                 </div>
+                <div></div>
+                <b data-bo-show="e.from.ready">готов</b> 
+                <br>
+            </div>
+        </div>
+        <div class="cellBorder"></div>
+    </td>
+    <td>
+        <div class="gridCell">
+            <div>
+                <div style="white-space: nowrap" class="lblCityNameMain"
+                 data-bo-text="e.to.city">
+                </div>
+                <div class="noteText" style="white-space: nowrap"
+                     data-bo-show="e.to.region"
+                      data-bo-text="e.to.region">
+                </div>
+                <div data-bo-show="e.to.street">
+                    <span data-bo-text="e.to.street"></span>
+                </div>
+            </div>
+        </div>
+        <div class="cellBorder"></div>
+
+    </td>
+    <td>
+        <div class="gridCell" style="border-right: none 0px !important;">
+			<div bindonce data-ng-repeat="r in e.rates" style="white-space: nowrap;">
+                <span style="white-space: nowrap;" data-bo-text="r.cost"></span> <span data-bo-text="r.note"></span><small class="noteText" data-bo-text="'(' + r.cost/e.distance | number:2 + ' р/км)'"></small>
+            </div>
+        </div>
+    </td>
+</tr>

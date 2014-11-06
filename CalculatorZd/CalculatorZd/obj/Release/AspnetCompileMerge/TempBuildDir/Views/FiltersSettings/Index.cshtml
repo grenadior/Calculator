@@ -1,0 +1,32 @@
+﻿@using System.Globalization
+@model CalculatorZd.Models.FilterEditViewModels
+@{
+    Layout = "~/Views/Shared/_NgLayout.cshtml";
+    ViewBag.Title = "Настройка фильтров";
+
+}
+
+@Scripts.Render("~/bundles/filterSettings")
+@Scripts.Render("~/bundles/dataservice")
+@Scripts.Render("~/bundles/ui-bootstrap-tpls")
+<script src="~/Scripts/autocomplete.js"></script>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+<div class="hero-unit">
+    <h1>@ViewBag.Title</h1>
+    <p class="lead"></p>
+    <p></p>
+</div>
+
+<div data-ng-controller="filterSettings as vm">
+    <div class="span4">
+        <select style="width: 350px;" ng-model="vm.filterType" ng-change="vm.filterTypesChanged()" ng-options="c.name for c in vm.filterTypes"></select>&nbsp;&nbsp;&nbsp;<button data-ng-click="vm.addFilterCoeffs()">Добавить</button>
+    </div>
+    <div style="float:left;">
+        <button data-ng-click="vm.saveCoefficientsByType()">Сохранить</button>
+    </div>
+    <div style="float:left;padding-left:20px;">
+        <table>
+            <tbody data-ng-include="'/app/views/_entity.html'"></tbody>
+        </table>
+    </div>
+</div>

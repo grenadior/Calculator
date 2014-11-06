@@ -1,0 +1,4 @@
+C:\CalcZd\CalculatorZd\Configuration\bin\Release\Configuration.dll
+C:\CalcZd\CalculatorZd\Configuration\bin\Release\Configuration.pdb
+C:\CalcZd\CalculatorZd\Configuration\obj\Release\Configuration.dll
+C:\CalcZd\CalculatorZd\Configuration\obj\Release\Configuration.pdb

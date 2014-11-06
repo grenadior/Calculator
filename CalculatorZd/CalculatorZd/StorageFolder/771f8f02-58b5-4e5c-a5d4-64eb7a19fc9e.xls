@@ -1,0 +1,107 @@
+<div>
+	<table cellspacing="0" rules="all" border="1" style="border-collapse:collapse;">
+		<tr>
+			<th scope="col">ID</th><th scope="col">Подрод Вагона</th><th scope="col">Наименование груза</th><th scope="col">Количество вагонов</th><th scope="col">Количество контейнеров</th>
+		</tr><tr>
+			<td>1</td><td>Крытые</td><td>БАЛЛОНЫ СТ</td><td>1</td><td>0</td>
+		</tr><tr>
+			<td>2</td><td>Крытые</td><td>БУМАГА Д/ПЕЧАТИ</td><td>1</td><td>0</td>
+		</tr><tr>
+			<td>3</td><td>Крытые</td><td>ВЕШАЛКИ-ПЛЕЧИКИ</td><td>1</td><td>0</td>
+		</tr><tr>
+			<td>4</td><td>Крытые</td><td>ГРАНИТ</td><td>2</td><td>0</td>
+		</tr><tr>
+			<td>5</td><td>Крытые</td><td>ДОБАВ.ПРОИЗ.ЦЕМ</td><td>3</td><td>0</td>
+		</tr><tr>
+			<td>6</td><td>Крытые</td><td>З/Ч АВТОМОБ</td><td>1</td><td>0</td>
+		</tr><tr>
+			<td>7</td><td>Крытые</td><td>З/Ч ТРАКТОР ПР</td><td>2</td><td>0</td>
+		</tr><tr>
+			<td>8</td><td>Крытые</td><td>З/Ч ТРАКТОРОВ</td><td>1</td><td>0</td>
+		</tr><tr>
+			<td>9</td><td>Крытые</td><td>ИГРУШКИ ИГРЫ</td><td>1</td><td>0</td>
+		</tr><tr>
+			<td>10</td><td>Крытые</td><td>ИЗД КЛЕЕН КР ОД</td><td>1</td><td>0</td>
+		</tr><tr>
+			<td>11</td><td>Рефрижераторы ос</td><td>ИЗД КОЛБАСНЫЕ</td><td>1</td><td>0</td>
+		</tr><tr>
+			<td>12</td><td>Крытые</td><td>ИЗД ПЛАСТМАС ПР</td><td>1</td><td>0</td>
+		</tr><tr>
+			<td>13</td><td>Крытые</td><td>ИЗД ЧЕРМЕТ ПР</td><td>1</td><td>0</td>
+		</tr><tr>
+			<td>14</td><td>Крытые</td><td>ИЗД ЧУЛОЧ-НОСОЧ</td><td>1</td><td>0</td>
+		</tr><tr>
+			<td>15</td><td>Крытые</td><td>ИЗД ШВЕЙНЫЕ ПР</td><td>1</td><td>0</td>
+		</tr><tr>
+			<td>16</td><td>Крытые</td><td>КАМЕНЬ СТР ПР</td><td>1</td><td>0</td>
+		</tr><tr>
+			<td>17</td><td>Рефрижераторы ос</td><td>КОНСЕРВЫ РЫБН</td><td>1</td><td>0</td>
+		</tr><tr>
+			<td>18</td><td>Крытые</td><td>КОНЦ ПИЩ ПР</td><td>1</td><td>0</td>
+		</tr><tr>
+			<td>19</td><td>Крытые</td><td>КОФЕ НАТУР</td><td>1</td><td>0</td>
+		</tr><tr>
+			<td>20</td><td>Крытые</td><td>КРАСКИ ПР</td><td>1</td><td>0</td>
+		</tr><tr>
+			<td>21</td><td>Крытые</td><td>МАСЛА РАСТ П ПР</td><td>1</td><td>0</td>
+		</tr><tr>
+			<td>22</td><td>Крытые</td><td>МАТЕР СТРОИТ ПР</td><td>6</td><td>0</td>
+		</tr><tr>
+			<td>23</td><td>Крытые</td><td>МАТРАЦЫ КР ПЕР</td><td>1</td><td>0</td>
+		</tr><tr>
+			<td>24</td><td>Крытые</td><td>МЕБЕЛЬ МЯГКАЯ</td><td>1</td><td>0</td>
+		</tr><tr>
+			<td>25</td><td>Крытые</td><td>МЕДИКАМЕНТЫ ПР</td><td>2</td><td>0</td>
+		</tr><tr>
+			<td>26</td><td>Крытые</td><td>МЕТЛЫ КР ТРАВ</td><td>2</td><td>0</td>
+		</tr><tr>
+			<td>27</td><td>Крытые</td><td>МЫЛО ТЕХН ЖИДК</td><td>3</td><td>0</td>
+		</tr><tr>
+			<td>28</td><td>Крытые</td><td>МЫЛО ТУАЛЕТ ЖИД</td><td>3</td><td>0</td>
+		</tr><tr>
+			<td>29</td><td>Рефрижераторы ос</td><td>МЯСО ДОМАШ ЖИВ</td><td>1</td><td>0</td>
+		</tr><tr>
+			<td>30</td><td>Крытые</td><td>НАЛИЧНИКИ ДЕРЕВ</td><td>1</td><td>0</td>
+		</tr><tr>
+			<td>31</td><td>Крытые</td><td>ОБОРУД СЪЕМ</td><td>2</td><td>0</td>
+		</tr><tr>
+			<td>32</td><td>Крытые</td><td>ОБОРУД ТОРГОВ</td><td>1</td><td>0</td>
+		</tr><tr>
+			<td>33</td><td>Рефрижераторы ос</td><td>ОВОЩИ СВЕЖМОР</td><td>1</td><td>0</td>
+		</tr><tr>
+			<td>34</td><td>Крытые</td><td>ОДЕЖДА ПР</td><td>2</td><td>0</td>
+		</tr><tr>
+			<td>35</td><td>Крытые</td><td>ПЛИТКИ КЕРАМ ПР</td><td>4</td><td>0</td>
+		</tr><tr>
+			<td>36</td><td>Крытые</td><td>ПОЛОТЕНЦА</td><td>1</td><td>0</td>
+		</tr><tr>
+			<td>37</td><td>Крытые</td><td>ПОСУДА ЛАБОРАТ</td><td>1</td><td>0</td>
+		</tr><tr>
+			<td>38</td><td>Крытые</td><td>ПОСУДА МЕТАЛ</td><td>1</td><td>0</td>
+		</tr><tr>
+			<td>39</td><td>Крытые</td><td>ПОСУДА СТЕКЛ ПР</td><td>1</td><td>0</td>
+		</tr><tr>
+			<td>40</td><td>Крытые</td><td>ПРИНАД ШК-П ПР</td><td>3</td><td>0</td>
+		</tr><tr>
+			<td>41</td><td>Крытые</td><td>ПРОД ПАРФ-К ПР</td><td>2</td><td>0</td>
+		</tr><tr>
+			<td>42</td><td>Рефрижераторы ос</td><td>РЫБА ПР</td><td>1</td><td>0</td>
+		</tr><tr>
+			<td>43</td><td>Крытые</td><td>СИЛИКАГЕЛЬ</td><td>1</td><td>0</td>
+		</tr><tr>
+			<td>44</td><td>Крытые</td><td>СРЕДСТ МОЮЩ ПР</td><td>1</td><td>0</td>
+		</tr><tr>
+			<td>45</td><td>Рефрижераторы ос</td><td>СЫР</td><td>1</td><td>0</td>
+		</tr><tr>
+			<td>46</td><td>Крытые</td><td>ТКАНИ БЯЗ ДЖУТ</td><td>2</td><td>0</td>
+		</tr><tr>
+			<td>47</td><td>Крытые</td><td>ТКАНИ ИСКУС СИН</td><td>1</td><td>0</td>
+		</tr><tr>
+			<td>48</td><td>Крытые</td><td>ХОЛОДИЛЬН ЭЛБЫТ</td><td>1</td><td>0</td>
+		</tr><tr>
+			<td>49</td><td>Крытые</td><td>ЧАСТ МАШ С/Х ПР</td><td>1</td><td>0</td>
+		</tr><tr>
+			<td>50</td><td>Крытые</td><td>ЭТИКЕТКИ ПЕЧАТ</td><td>3</td><td>0</td>
+		</tr>
+	</table>
+</div>

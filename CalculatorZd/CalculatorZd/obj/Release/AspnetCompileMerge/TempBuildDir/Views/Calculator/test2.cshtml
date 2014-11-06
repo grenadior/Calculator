@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <title>Angular bootstrap-select</title>
+ 
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/bootstrap/bootstrap-select.min.css">
+    <link href="~/Content/bootstrap/bootstrap-select.min.css" rel="stylesheet" />
+    
+    
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+
+    @*@Styles.Render("~/bundles/bootstrap-select/css")*@
+
+ 
+   
+    @*<script src="~/Scripts/jquery-2.0.3.min.js"></script>*@
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jquery-ui")
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script> 
+    <script src="~/app/ng/app.js"></script>
+    <script src="~/Scripts/bootstrap-select.js"></script>
+ 
+
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script> 
+    <script src="~/Scripts/bootstrap-select.min.js"></script>
+  
+
+
+
+
+
+    <script src="~/Scripts/angular-bootstrap-select.min.js"></script>
+
+    @*<script src="~/Scripts/selectDemo/marked.js"></script>*@
+    <script src="~/app/ng/controllers/select.js"></script>
+@Scripts.Render("~/bundles/ui-bootstrap-tpls")
+
+</head>
+<body ng-app="app">
+    <div ng-controller="SelectCtrl">
+        <div>
+            <select ng-model="form" class="selectpicker">
+                <option selected="selected">Выберите значение</option>
+                <option style="font-weight: bold;">Автомобилевозы</option>
+                <option>Авт.2-х ярусные</option>
+                <option>Автомобилевозы</option>
+                <option>Думпкары</option>
+                <option>Зерновозы</option>
+                <option>Зерновозы</option>
+
+            </select>
+        </div><code>{{form || 'undefined'}}</code>
+    </div>
+
+    @*<div class='container-fluid' ng-controller="TypeaheadCtrl">
+
+            <h4>Static arrays</h4>
+            <pre>Model: {{selected | json}}</pre>
+            <input type="text" ng-model="selected" typeahead="state for state in states | filter:$viewValue | limitTo:8" class="form-control">
+
+            <h4>Asynchronous results</h4>
+            <pre>Model: {{asyncSelected | json}}</pre>
+            <input type="text" ng-model="asyncSelected" placeholder="Locations loaded via $http" typeahead="address for address in getLocation($viewValue) | filter:$viewValue" typeahead-loading="loadingLocations" class="form-control">
+            <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+
+            <h4>Custom templates for results</h4>
+            <pre>Model: {{customSelected | json}}</pre>
+            <input type="text" ng-model="customSelected" placeholder="Custom template" typeahead="state as state.name for state in statesWithFlags | filter:{name:$viewValue}" typeahead-template-url="customTemplate.html" class="form-control">
+        </div>*@
+
+    @*<div ng-controller="ProgressDemoCtrl">
+            <h3>Static</h3>
+            <div class="row">
+                <div class="col-sm-4"><progressbar value="55"></progressbar></div>
+                <div class="col-sm-4"><progressbar class="progress-striped" value="22" type="warning">22%</progressbar></div>
+                <div class="col-sm-4"><progressbar class="progress-striped active" max="200" value="166" type="danger"><i>166 / 200</i></progressbar></div>
+            </div>
+            <hr />
+            <h3>Dynamic <button class="btn btn-sm btn-primary" type="button" ng-click="random()">Randomize</button></h3>
+            <progressbar max="max" value="dynamic"><span style="color:black; white-space:nowrap;">{{dynamic}} / {{max}}</span></progressbar>
+
+            <small><em>No animation</em></small>
+            <progressbar animate="false" value="dynamic" type="success"><b>{{dynamic}}%</b></progressbar>
+            <small><em>Object (changes type based on value)</em></small>
+            <progressbar class="progress-striped active" value="dynamic" type="{{type}}">{{type}} <i ng-show="showWarning">!!! Watch out !!!</i></progressbar>
+
+            <hr />
+            <h3>Stacked <button class="btn btn-sm btn-primary" type="button" ng-click="randomStacked()">Randomize</button></h3>
+            <progress><bar ng-repeat="bar in stacked" value="bar.value" type="{{bar.type}}"><span ng-hide="bar.value < 5">{{bar.value}}%</span></bar></progress>
+        </div>*@
+</body>
+</html>
+
+
+

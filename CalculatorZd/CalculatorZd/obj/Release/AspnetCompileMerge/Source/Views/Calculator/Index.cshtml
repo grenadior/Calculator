@@ -1,0 +1,999 @@
+@using ATI.Web.Site.MVC.Helpers
+@using AutoCompleteSample.Infrastructure
+@using BO
+@using Localization.WebResources.Common;
+@model CalculatorZd.Models.CalculatorViewModel
+@{
+    ViewBag.Title = "Калькулятор";
+    Layout = "~/Views/Shared/_NgLayout.cshtml";
+}
+
+<script>
+
+    $(window).on('load', function () {
+
+    });
+
+    $(function () {
+        jQuery(function ($) {
+            $.datepicker.setDefaults(
+                $.datepicker.regional['ru']);
+        });
+
+        $('#dateBegin').datepicker();
+        $('#dateEnd').datepicker();
+    });
+</script>
+@Scripts.Render("~/bundles/datepicker")
+@Scripts.Render("~/bundles/dataservice")
+@Scripts.Render("~/bundles/calculator")
+@Scripts.Render("~/bundles/autocomplete")
+@Scripts.Render("~/bundles/ui-bootstrap-tpls")
+<script src="~/app/ng/controllers/paginationCtrl.js"></script>
+@*<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">*@
+
+<div ng-controller="binding as vm" style="padding-left:0px;">
+    <div>
+        <div>
+            <div style="padding-right:10px">
+                <div style=" padding-bottom: 10px;  padding-left: 10px; padding-right: 10px; width: 300px;">
+                    Фильтры:
+                    <table cellpadding="2px" border="1px" style="width: 300px; border-color: #efefef;" data-ng-include="'filtersTemplate'"></table>
+                    <input type="text" id="txtFilterName" style="width: 250px" placeholder="Введите название фильтра" maxlength="100"
+                           ng-model="vm.firmFilterName"
+                           class="form-control">  <button data-ng-click="vm.createFilter()">Создать фильтр</button>
+                    @*<button class="btn btn-default" ng-click="open('sm')">Small modal</button>*@
+                    
+                    
+                    
+                    @*@if (Model.FilterList.FilterItems.Count > 0)
+                    {
+                        <table cellpadding="2px" border="1px" style="width: 300px; border-color: #efefef;" data-ng-include="'filtersTemplate'" class="ng-scope">
+
+                            @foreach (CalcFilterItem item in Model.FilterList.FilterItems)
+                            {
+                                <tr data-ng-repeat="filter in vm.allFiltersSettingsList track by $index" class="ng-scope">
+                                    <td style="width:90%" class="ng-binding">
+                                        @item.FilterName
+                                    </td>
+                                    <td><button data-ng-click="vm.confirmFilter(@item.FilterID)">Применить</button></td>
+                                    <td><button data-ng-click="vm.deleteFilter(@item.FilterID)">X</button></td>
+                                </tr>
+                            }
+                        </table>
+                    }
+                    <input type="text" id="txtFilterName" style="width: 250px" placeholder="Введите название фильтра" maxlength="100"
+                           ng-model="vm.firmFilterName"
+                           class="form-control">  <button data-ng-click="vm.createFilter()">Создать фильтр</button>*@
+                </div>
+
+            </div>
+        </div>
+        <div>
+          
+            <div style="float:left;padding-right:10px">
+                <table style="background-color: gainsboro; border: 1px; border-bottom-color: gainsboro; border-left-color: gainsboro; border-top-color: gainsboro; line-height: 0px;" border="1">
+                    <tr>
+                        <td style="border-bottom-color: gainsboro; text-align:right;">
+                            <div style="float: left; background-color: gainsboro; padding: 0px; width: 250px; text-align: right; padding-right: 10px; padding-top: 5px;">
+                                <p style="font-weight:bold;font-size:13px"> @Strings.Filter_PeriodTransportation</p>
+                            </div>
+                        </td>
+                        <td style="border-bottom-color: gainsboro; border-right-color: gainsboro; padding-top:10px;">
+                            с @Html.TextBox("dateBegin", "", new { @style = "width:80px;" })
+                            по @Html.TextBox("dateEnd", "", new { @style = "width:80px;" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="background-color: gainsboro; padding: 10px; width: 200px;text-align: right; ">
+                                <p style="font-size:13px">@Html.DisplayNameFor(m => m.NumberVagon)&nbsp; <a href="#" title="Справка Справка Справка">?</a> </p>
+                            </div>
+                        </td>
+                        <td style="border-bottom-color: gainsboro; border-right-color: gainsboro;">
+
+                            <div style=" background-color: gainsboro; padding-left: 10px; padding-right: 10px; width: 300px;">
+                                <table cellpadding="12px" border="1px" style="width: 300px;border-color: #efefef;" data-ng-include="'vagonNumbersTemplate'"></table>
+                            </div>
+                            <br />
+                            <div>
+                                <div style="float:left; font-size: 13px; vertical-align: middle; padding-left:10px;margin: 0px; height:30px; ">
+                                    @*@Html.DropDownListFor(m => m.TransportationTypeID, Model.TransportationType, new { @id = "ddtTransportationList" })*@
+                                    <input type="text" style="width: 150px;" ng-model="vm.vagonNumber" ng-options="c.name  for c in vm.vagonNumbers"  ></input>
+
+                                </div>
+                                <div style="float:left;vertical-align: middle; padding-left: 10px">
+                                    <button data-ng-click="vm.addVagonNumber()">+</button>
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="background-color: gainsboro; padding: 10px; width: 200px;text-align: right; ">
+                                <p style="font-size:13px">@Html.DisplayNameFor(m => m.TransportationType)&nbsp; <a href="#" title="Справка Справка Справка">?</a> </p>
+                            </div>
+                        </td>
+                        <td style="border-bottom-color: gainsboro; border-right-color: gainsboro;">
+
+                            <div style=" background-color: gainsboro; padding-left: 10px; padding-right: 10px; width: 300px;">
+                                <table cellpadding="12px" border="1px" style="width: 300px;border-color: #efefef;" data-ng-include="'transportationTypesTemplate'"></table>
+                            </div>
+                            <br />
+                            <p style=" font-size: 13px; vertical-align: middle; padding-left:10px;margin: 0px; height:30px; ">
+                                @*@Html.DropDownListFor(m => m.TransportationTypeID, Model.TransportationType, new { @id = "ddtTransportationList" })*@
+                                <select style="width: 300px;" ng-model="vm.transportationType" ng-options="c.name  for c in vm.transportationTypes" ng-change="vm.addTransportationType()"></select>
+
+                            </p>
+                            <p style="vertical-align: middle; padding-left: 10px">
+                                @*<button data-ng-click="vm.addTransportationType()">Добавить</button>*@
+                            </p>
+
+
+                        </td>
+                    </tr>
+                </table>
+
+
+                <div style="display:none;">
+                    <script id="transportationTypesTemplate" type="text/ng-template">
+                        <tr data-ng-repeat="transportationType in vm.selectedTransportationTypes track by $index">
+                            <td style="width:90%;">
+                                {{transportationType.name}}
+                            </td>
+                            <td><button data-ng-click="vm.deleteItem(transportationType, vm.selectedTransportationTypes)">X</button></td>
+                        </tr>
+                    </script>
+                </div>
+
+                <br />
+
+                <style>
+                    div.growlUI {
+                        background: url(check48.png) no-repeat 10px 10px;
+                    }
+
+                    div.growlUI h1, div.growlUI h2 {
+                        color: white;
+                        padding: 5px 5px 5px 75px;
+                        text-align: left;
+                    }
+                </style>
+
+
+                <!-------------------Тип вагона---------------->
+                <table style="background-color: gainsboro; border: 1px; border-bottom-color: gainsboro; border-left-color: gainsboro; border-top-color: gainsboro; line-height:0px" border="1">
+                    <tr>
+                        <td style="border-bottom-color: gainsboro; padding-top: 5px;">
+                            <div style="float: left; background-color: gainsboro; padding: 0px; width: 250px; text-align: right; padding-right: 10px; padding-top: 5px;">
+                                <p style="font-weight:bold;font-size:13px">@Strings.Filter_VatonType</p>
+                            </div>
+                        </td>
+                        <td style="border-bottom-color: gainsboro; border-right-color: gainsboro;"></td>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom-color: gainsboro; text-align:right;">
+                            <div style="background-color: gainsboro; padding: 0px; width: 200px;text-align: right; ">
+                                @Html.DisplayNameFor(m => m.VagonType)&nbsp;&nbsp;<a href="#" title="Справка Справка Справка">?</a>
+                            </div>
+                        </td>
+                        <td style="border-bottom-color: gainsboro; border-right-color: gainsboro;">
+
+                            <div style=" background-color: gainsboro; padding-left: 10px; padding-right: 10px; width: 300px;">
+                                <table cellpadding="12px" border="1px" style="width: 300px;border-color: #efefef;" data-ng-include="'wagonTypesTemplate'"></table>
+                            </div>
+                            <br />
+                            <p style=" font-size: 14px; vertical-align: middle; padding-left: 10px; margin: 0px; height: 30px; ">
+                                <select style="width: 300px;" ng-model="vm.wagonType" ng-options="c.WagonName   for c in vm.wagonTypes" ng-change="vm.addWagonType()"></select>
+                            </p>
+
+                            <p style="vertical-align: middle; padding-left: 10px">
+                                @*<button data-ng-click="vm.addWagonType()">Добавить</button>*@
+                            </p>
+
+                        </td>
+                    </tr>
+                    @*<tr>
+                        <td>
+                            <div style="background-color: gainsboro; padding: 20px; width: 200px;text-align: right; ">
+                                @Html.DisplayNameFor(m => m.ContainerVolume)&nbsp; <a href="#" title="Справка Справка Справка">?</a>
+                            </div>
+                        </td>
+                        <td style="border-bottom-color: gainsboro; border-right-color: gainsboro;">
+
+                            <div style=" background-color: gainsboro; padding-left: 10px; width: 300px;">
+                                <table cellpadding="12px" border="1px" style="width: 300px;border-color: #efefef;" data-ng-include="'containerVolumeTemplate'"></table>
+                            </div>
+                            <br />
+                            <p style="font-size: 14px; vertical-align: middle; padding-left:10px;margin: 0px; height:30px; ">
+                                <select style="width: 300px;" ng-model="vm.containerVolume" ng-options="c.name for c in vm.containerVolumes" ng-change="vm.addContainerVolume()"></select>
+                            </p>
+                            <p style="vertical-align: middle; padding-left: 10px">
+                                @*<button data-ng-click="vm.addContainerVolume()">Добавить</button>
+                            </p>
+                        </td>
+                    </tr>*@
+                </table>
+
+
+                <div style="display:none;">
+                    <script id="vagonNumbersTemplate" type="text/ng-template">
+                        <tr data-ng-repeat="vagon in vm.vagonNumbers track by $index">
+                            <td style="width:90%;">
+                                {{vagon.name}}
+                            </td>
+                            <td><button data-ng-click="vm.deleteItem(vagon, vm.vagonNumbers)">X</button></td>
+                        </tr>
+                    </script>
+                    <script id="wagonTypesTemplate" type="text/ng-template">
+                        <tr data-ng-repeat="wagon in vm.selectedWagonTypes track by $index">
+                            <td style="width:90%;">
+                                {{wagon.name}}
+                            </td>
+                            <td><button data-ng-click="vm.deleteItem(wagon, vm.selectedWagonTypes)">X</button></td>
+                        </tr>
+                    </script>
+                    <script id="containerVolumeTemplate" type="text/ng-template">
+                        <tr data-ng-repeat="container in vm.selectedContainerVolumes track by $index">
+                            <td style="width:90%">
+                                {{container.name}}
+                            </td>
+                            <td><button data-ng-click="vm.deleteItem(container, vm.selectedContainerVolumes)">X</button></td>
+                        </tr>
+                    </script>
+                </div>
+                <br />
+
+                <!--------------------------Тип груза------------------------->
+                <table style="background-color: gainsboro; border: 1px; border-bottom-color: gainsboro; border-left-color: gainsboro; border-top-color: gainsboro; line-height:0px" border="1">
+                    <tr>
+                        <td style="border-bottom-color: gainsboro;">
+                            <div style="float: left; background-color: gainsboro; padding: 0px; width: 250px; text-align: right; padding-right: 10px; padding-top: 5px;">
+                                <p style="font-weight:bold;font-size:13px; white-space: nowrap;">@Strings.Filter_CargoType</p>
+                            </div>
+                        </td>
+                        <td style="border-bottom-color: gainsboro; border-right-color: gainsboro;"></td>
+
+                    </tr>
+                    <tr>
+                        <td style="border-bottom-color: gainsboro; text-align:right;">
+                            <div style="background-color: gainsboro; padding: 2px; width: 200px;text-align: right; white-space: nowrap; ">
+                                @Html.DisplayNameFor(m => m.CargoName)&nbsp;&nbsp;<a href="#" title="Справка Справка Справка">?</a>
+                            </div>
+                        </td>
+                        <td style="border-bottom-color: gainsboro; border-right-color: gainsboro;">
+                            <div style=" background-color: gainsboro; padding-left: 10px; padding-right: 10px; width: 400px;">
+                                <table cellpadding="12px" border="1px" style="width: 300px;border-color: #efefef;" data-ng-include="'cargoNamesTemplate'"></table>
+                            </div>
+                            <br />
+
+                            <div style="width: 400px; padding-left: 10px;" class='container-fluid' ng-controller="TypeaheadCtrl">
+                                <input type="text" id="txtCargoName" style="width: 400px" placeholder="Введите значение" maxlength="100" ng-model="vm.cargoName" typeahead-on-select="vm.addCargoName()"
+                                       typeahead="address for address in getCargoName($viewValue) | filter:$viewValue" class="form-control">
+                                <i class="glyphicon glyphicon-refresh"></i>
+                            </div>
+                            <p style="vertical-align: middle; padding-left: 10px">
+                                <label data-ng-repeat="act in vm.rbListCargoSourceType">
+                                    <input name="vagonSourceTypeParam"
+                                           type="radio"
+                                           value="{{act}}"
+                                           ng-model="vm.vagonSourceTypeParam" ng-change="vm.rbVagonSourceTypeClick()" />
+                                    {{act}}
+                                </label>
+                            </p>
+
+
+                        </td>
+                    </tr>
+                    <tr id="trCargoNameEarlyTransportation">
+                        <td style="border-bottom-color: gainsboro; text-align:right;">
+                            <div style="background-color: gainsboro; padding: 2px; width: 200px;text-align: right; white-space: nowrap; ">
+                                @Html.DisplayNameFor(m => m.CargoNameEarlyTransportation)&nbsp;&nbsp;<a href="#" title="Справка Справка Справка">?</a>
+                            </div>
+                        </td>
+                        <td style="border-bottom-color: gainsboro; border-right-color: gainsboro;">
+                            <div style=" background-color: gainsboro; padding-left: 10px; padding-right: 10px; width: 400px;">
+                                <table cellpadding="12px" border="1px" style="width: 300px;border-color: #efefef;" data-ng-include="'cargoNameEarlyTransportationsTemplate'"></table>
+                            </div>
+                            <br />
+
+                            <div style="width: 400px; padding-left: 10px;" class='container-fluid' ng-controller="TypeaheadCtrl">
+                                <input type="text" id="txtCargoNameEarlyTransportation" style="width: 400px" placeholder="Введите значение" maxlength="100" ng-model="vm.cargoNameEarlyTransportation" typeahead-on-select="vm.addCargoNameEarlyTransportation()"
+                                       typeahead="address for address in getCargoNameEarlyTransportation($viewValue) | filter:$viewValue" class="form-control">
+                                <i class="glyphicon glyphicon-refresh"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="background-color: gainsboro; padding: 5px;text-align: right; ">
+                                @Html.DisplayNameFor(m => m.CargoGroupName)&nbsp;&nbsp; <a href="#" title="Справка Справка Справка">?</a>
+                            </div>
+                        </td>
+                        <td style="border-bottom-color: gainsboro; border-right-color: gainsboro;">
+
+                            <div style=" background-color: gainsboro; padding-left: 10px; width: 300px;">
+                                <table cellpadding="12px" border="1px" style="width: 300px;border-color: #efefef;" data-ng-include="'сargoGroupNameTemplate'"></table>
+                            </div>
+                            <br />
+                            <p style=" font-size: 14px; vertical-align: middle; padding-left:10px;margin: 0px; height:30px; ">
+                                <select style="width: 300px;" ng-model="vm.cargoGroupName" ng-options="c.name for c in vm.cargoGroupNames" ng-change="vm.addCargoGroupName()"></select>
+
+
+                                @*<select ng-model="vm.cargoGroupName" ng-options="c.name for c in vm.cargoGroupNames">
+                                        <option class="special" ng-repeat="operator in vm.cargoGroupNames" title="{{operator.title}}" ng-selected="{{operator.value == filterCondition.operator}}" value="{{operator.value}}"></option>
+                                    </select>*@
+                                @*<select   class="selectpicker" >
+                                        @*<option value="0" selected="selected">Выберите значение</option>
+                                        <option value="2" class="special">Автомобилевозы</option>
+                                        <option value="3" style="padding-left: 30px;">Авт.2-х ярусные</option>
+                                        <option value="4" style="padding-left: 30px;">Авт.2-х ярусные</option>
+                                        <option value="5" class="special">Думпкары</option>
+                                    </select>*@
+                            </p>
+                            <p style="vertical-align: middle; padding-left: 10px">
+                                @*<button data-ng-click="vm.addCargoGroupName()">Добавить</button>*@
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+                <style>
+                    .special {
+                        font-style: italic;
+                        font-weight: bold !important;
+                        /*color: #bc0000 !important;
+                        background: #000;*/
+                    }
+
+                    .subgroup {
+                        padding-left: 30px;
+                    }
+                </style>
+                <div style="display:none">
+                    <script id="cargoNamesTemplate" type="text/ng-template">
+                        <tr data-ng-repeat="name in vm.cargoNames track by $index">
+                            <td style="width:90%">
+                                {{name.name}}
+                            </td>
+                            <td><button data-ng-click="vm.deleteItem(name, vm.cargoNames)">X</button></td>
+                        </tr>
+                    </script>
+                    <script id="cargoNameEarlyTransportationsTemplate" type="text/ng-template">
+                        <tr data-ng-repeat="name in vm.cargoNamesEarlyTransportation track by $index">
+                            <td style="width:90%">
+                                {{name.name}}
+                            </td>
+                            <td><button data-ng-click="vm.deleteItem(name, vm.cargoNamesEarlyTransportation)">X</button></td>
+                        </tr>
+                    </script>
+
+                    <div data-ng-include="'сargoGroupNameTemplate'"></div>
+
+                    <script id="сargoGroupNameTemplate" type="text/ng-template">
+                        <tr data-ng-repeat="groupName in vm.selectedCargoGroupNames track by $index">
+                            <td style="width:90%">
+                                {{groupName.name}}
+                            </td>
+                            <td><button data-ng-click="vm.deleteItem(groupName, vm.selectedCargoGroupNames)">X</button></td>
+                        </tr>
+                    </script>
+                </div>
+                <br />
+
+
+                <!--------------------------Информация о грузоотправителе------------------------->
+                <table style="background-color: gainsboro; border: 1px; border-bottom-color: gainsboro; border-left-color: gainsboro; border-top-color: gainsboro;line-height:0px " border="1">
+                    <tr>
+                        <td style="border-bottom-color: gainsboro;">
+                            <div style="float: left; background-color: gainsboro; padding: 0px; width: 250px; text-align: right; padding-right: 10px; padding-top: 5px;">
+                                <p style="font-weight:bold;font-size:13px">@Strings.Filter_CargoSenderInfo</p>
+                            </div>
+                        </td>
+                        <td style="border-bottom-color: gainsboro; border-right-color: gainsboro;"></td>
+
+                    </tr>
+                    <tr>
+                        <td style="border-bottom-color: gainsboro; text-align:right;">
+                            <div style="background-color: gainsboro; padding: 20px; width: 200px;text-align: right; ">
+                                @Html.DisplayNameFor(m => m.OKPO)&nbsp;&nbsp;<a href="#" title="Справка Справка Справка">?</a>
+                            </div>
+                        </td>
+                        <td style="border-bottom-color: gainsboro; border-right-color: gainsboro;">
+                            <div style=" background-color: gainsboro; padding-left: 10px; padding-right: 10px; width: 300px;">
+                                <table cellpadding="12px" border="1px" style="width: 400px;border-color: #efefef;" data-ng-include="'companiesSendingTemplate'"></table>
+                            </div>
+                            <br />
+                            <div style="width: 400px; padding-left: 10px;" class='container-fluid' ng-controller="TypeaheadCtrl">
+                                <input style="width:400px" type="text" placeholder="Введите значение" id="txtCompanySending" maxlength="100" ng-model="vm.companySending" typeahead-on-select="vm.addCompanySending()"
+                                       typeahead="address for address in getCompanySending($viewValue) | filter:$viewValue" class="form-control">
+                                <i class="glyphicon glyphicon-refresh"></i>
+                            </div>
+                            <p style="vertical-align: middle; padding-left: 10px">
+                                @*<button data-ng-click="vm.addCompanySending()">Добавить</button>*@
+                            </p>
+
+                        </td>
+                    </tr>
+                </table>
+                <div style="display:none">
+                    <script id="companiesSendingTemplate" type="text/ng-template">
+                        <tr data-ng-repeat="company in vm.companiesSending track by $index">
+                            <td style="width:90%">
+                                {{company.name}}
+                            </td>
+                            <td><button data-ng-click="vm.deleteItem(company, vm.companiesSending)">X</button></td>
+                        </tr>
+                    </script>
+                </div>
+
+                <br />
+
+                <!--------------------------Информация о грузополучателе------------------------->
+                <table style="background-color: gainsboro; border: 1px; border-bottom-color: gainsboro; border-left-color: gainsboro; border-top-color: gainsboro; line-height:0px" border="1">
+                    <tr>
+                        <td style="border-bottom-color: gainsboro;">
+                            <div style="float: left; background-color: gainsboro; padding: 0px; width: 250px; text-align: right; padding-right: 10px; padding-top: 5px;">
+                                <p style="font-weight:bold;font-size:13px">@Strings.Filter_CargoRecipientInfo</p>
+                            </div>
+                        </td>
+                        <td style="border-bottom-color: gainsboro; border-right-color: gainsboro;"></td>
+
+                    </tr>
+                    <tr>
+                        <td style="border-bottom-color: gainsboro; text-align:right;">
+                            <div style="background-color: gainsboro; padding: 20px; width: 200px;text-align: right; ">
+                                @Html.DisplayNameFor(m => m.OKPO)&nbsp;&nbsp;<a href="#" title="Справка Справка Справка">?</a>
+                            </div>
+                        </td>
+                        <td style="border-bottom-color: gainsboro; border-right-color: gainsboro;">
+                            <div style=" background-color: gainsboro; padding-left: 10px; padding-right: 10px; width: 300px;">
+                                <table cellpadding="12px" border="1px" style="width: 400px; border-color: #efefef;" data-ng-include="'companiesRecipientTemplate'"></table>
+                            </div>
+                            <br />
+                            <div style="width: 400px; padding-left: 10px;" class='container-fluid' ng-controller="TypeaheadCtrl">
+                                <input style="width: 400px" type="text" placeholder="Введите значение" id="txtCompanyRecipient" ng-model="vm.companyRecipient" maxlength="100"
+                                       ng-model="vm.companyRecipient" typeahead-on-select="vm.addCompanyRecipient()"
+                                       typeahead="address for address in getCompanyRecipient($viewValue) | filter:$viewValue" class="form-control">
+                                <i class="glyphicon glyphicon-refresh"></i>
+                            </div>
+                            <p style="vertical-align: middle; padding-left: 10px">
+                                @*<button data-ng-click="vm.addCompanyRecipient()">Добавить</button>*@
+                            </p>
+
+                        </td>
+                    </tr>
+                </table>
+                <div style="display:none">
+                    <script id="companiesRecipientTemplate" type="text/ng-template">
+                        <tr data-ng-repeat="company in vm.companiesRecipient track by $index">
+                            <td style="width:90%">
+                                {{company.name}}
+                            </td>
+                            <td><button data-ng-click="vm.deleteItem(company, vm.companiesRecipient)">X</button></td>
+                        </tr>
+                    </script>
+                </div>
+
+
+                <br />
+            </div>
+            <!--------------------------Маршрут перевозки------------------------->
+            <div style="float:left;">
+                <table style="background-color: gainsboro; border: 1px; border-bottom-color: gainsboro; border-left-color: gainsboro; border-top-color: gainsboro; line-height:0px" border="1">
+                    <tr>
+                        <td style="border-bottom-color: gainsboro; padding-top: 5px;">
+                            <div style="float: left; background-color: gainsboro; padding: 0px; width: 250px; text-align: right; padding-right: 10px; padding-top: 5px;">
+                                <p style="font-weight:bold;font-size:13px">@Strings.Filter_WayTranspportation</p>
+                            </div>
+                        </td>
+                        <td style="border-bottom-color: gainsboro; border-right-color: gainsboro;"></td>
+
+                    </tr>
+                    <tr>
+                        <td style="border-bottom-color: gainsboro; text-align:right;">
+                            <div style="background-color: gainsboro; padding: 20px; width: 200px;text-align: right; ">
+                                @Html.DisplayNameFor(m => m.CountrySending)&nbsp;&nbsp;<a href="#" title="Справка Справка Справка">?</a>
+                            </div>
+                        </td>
+                        <td style="border-bottom-color: gainsboro; border-right-color: gainsboro;">
+                            <div style=" background-color: gainsboro; padding-left: 10px; padding-right: 10px; width: 300px;">
+                                <table cellpadding="12px" border="1px" style="width: 300px; border-color: #efefef;" data-ng-include="'countrysSendingTemplate'"></table>
+                            </div>
+                            <br />
+                            <div style="width: 300px; padding-left: 10px;" class='container-fluid' ng-controller="TypeaheadCtrl">
+                                <input style="width:300px" placeholder="Введите значение" type="text" id="txtCountrySending"
+                                       maxlength="100"
+                                       typeahead="address for address in getCountriesSending($viewValue) | filter:$viewValue" class="form-control"
+                                       ng-model="vm.countrySending" maxlength="100"
+                                       typeahead-on-select="vm.addCountrySending()">
+                                <i class="glyphicon glyphicon-refresh"></i>
+                            </div>
+                            <p style="vertical-align: middle; padding-left: 10px">
+                                @*<button data-ng-click="vm.addCountrySending()">Добавить</button>*@
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom-color: gainsboro; text-align:right;">
+                            <div style="background-color: gainsboro; padding: 20px; width: 200px;text-align: right; ">
+                                @Html.DisplayNameFor(m => m.WaySending)&nbsp;&nbsp;<a href="#" title="Справка Справка Справка">?</a>
+                            </div>
+                        </td>
+                        <td style="border-bottom-color: gainsboro; border-right-color: gainsboro;">
+                            <div style=" background-color: gainsboro; padding-left: 10px; padding-right: 10px; width: 300px;">
+                                <table cellpadding="12px" border="1px" style="width: 300px; border-color: #efefef;" data-ng-include="'waysSendingTemplate'"></table>
+                            </div>
+                            <br />
+                            <div style="width: 300px; padding-left: 10px;" class='container-fluid' ng-controller="TypeaheadCtrl">
+                                <input style="width:300px" type="text" placeholder="Введите значение" id="txtWaysSending"
+                                       maxlength="100"
+                                       ng-model="vm.waySending"
+                                       typeahead-on-select="vm.addWaySending()"
+                                       typeahead="address for address in getWaysSending($viewValue) | filter:$viewValue" typeahead-loading="loadingLocations" class="form-control">
+                                <i ng-show="loading1Locations" class="glyphicon glyphicon-refresh"></i>
+                            </div>
+                            <p style="vertical-align: middle; padding-left: 10px">
+                                @*<button data-ng-click="vm.addWaySending()">Добавить</button>*@
+                            </p>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom-color: gainsboro; text-align:right;">
+                            <div style="background-color: gainsboro; padding: 20px; width: 200px;text-align: right; ">
+                                @Html.DisplayNameFor(m => m.SubjectSending)&nbsp;&nbsp;<a href="#" title="Справка Справка Справка">?</a>
+                            </div>
+                        </td>
+                        <td style="border-bottom-color: gainsboro; border-right-color: gainsboro;">
+                            <div style=" background-color: gainsboro; padding-left: 10px; padding-right: 10px; width: 300px;">
+                                <table cellpadding="12px" border="1px" style="width: 300px; border-color: #efefef;" data-ng-include="'subjectsSendingTemplate'"></table>
+                            </div>
+                            <br />
+                            <div style="width: 300px; padding-left: 10px;" class='container-fluid' ng-controller="TypeaheadCtrl">
+                                <input style="width:300px" type="text" placeholder="Введите значение" id="txtSubjectsSending"
+                                       ng-model="vm.subjectSending"
+                                       typeahead-on-select="vm.addSubjectSending()"
+                                       maxlength="100" typeahead="address for address in getSubjectsSending($viewValue) | filter:$viewValue" class="form-control">
+                                <i class="glyphicon glyphicon-refresh"></i>
+                            </div>
+                            <p style="vertical-align: middle; padding-left: 10px">
+                                @*<button data-ng-click="vm.addSubjectSending()">Добавить</button>*@
+                            </p>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom-color: gainsboro; text-align:right;">
+                            @Html.DisplayNameFor(m => m.StationSendingCode)&nbsp;&nbsp;<a href="#" title="Справка Справка Справка">?</a>
+
+                        </td>
+                        <td style="border-bottom-color: gainsboro; border-right-color: gainsboro;">
+                            <div style=" background-color: gainsboro; padding-left: 10px; padding-right: 10px; width: 300px;">
+                                <table cellpadding="12px" border="1px" style="width: 300px; border-color: #efefef;" data-ng-include="'stationsSendingTemplate'"></table>
+                            </div>
+                            <br />
+                            <div style="width: 300px; padding-left: 10px; line-height:20px" class='container-fluid' ng-controller="TypeaheadCtrl">
+                                <input style="width:300px" type="text" placeholder="Введите значение" id="txtStationsSending"
+                                       ng-model="vm.stationSending"
+                                       typeahead-on-select="vm.addStationSending()"
+                                       maxlength="100" typeahead="address for address in getStationsSending($viewValue) | filter:$viewValue" class="form-control">
+                                <i class="glyphicon glyphicon-refresh"></i>
+                            </div>
+                            <p style="vertical-align: middle; padding-left: 10px">
+                                @*<button data-ng-click="vm.addStationSending()">Добавить</button>*@
+                            </p>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom-color: gainsboro;">
+                            <div style="float: left; background-color: gainsboro; padding: 0px; width: 250px; text-align: right; padding-right: 10px; padding-top: 5px;">
+                                <p style="font-weight:bold;font-size:13px"></p>
+                            </div>
+                        </td>
+                        <td style="border-bottom-color: gainsboro; border-right-color: gainsboro;"></td>
+
+                    </tr>
+                    <tr>
+                        <td style="border-bottom-color: gainsboro; text-align:right;">
+                            <div style="background-color: gainsboro; padding: 20px; width: 200px;text-align: right; ">
+                                @Html.DisplayNameFor(m => m.CountryDelivering)&nbsp;&nbsp;<a href="#" title="Справка Справка Справка">?</a>
+                            </div>
+                        </td>
+                        <td style="border-bottom-color: gainsboro; border-right-color: gainsboro;">
+                            <div style=" background-color: gainsboro; padding-left: 10px; padding-right: 10px; width: 300px;">
+                                <table cellpadding="12px" border="1px" style="width: 300px; border-color: #efefef;" data-ng-include="'countriesDeliveringTemplate'"></table>
+                            </div>
+                            <br />
+                            <div style="width: 300px; padding-left: 10px; " class='container-fluid' ng-controller="TypeaheadCtrl">
+                                <input style="width:300px" type="text" placeholder="Введите значение" id="txtCountryDelivering" maxlength="100"
+                                       ng-model="vm.countryDelivering"
+                                       typeahead-on-select="vm.addCountryDelivering()"
+                                       typeahead="address for address in getCountriesDelivering($viewValue) | filter:$viewValue" class="form-control">
+                                <i class="glyphicon glyphicon-refresh"></i>
+                            </div>
+                            <p style="vertical-align: middle; padding-left: 10px">
+                                @*<button data-ng-click="vm.addCountryDelivering()">Добавить</button>*@
+                            </p>
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="border-bottom-color: gainsboro; text-align:right;">
+                            <div style="background-color: gainsboro; padding: 20px; width: 200px;text-align: right; ">
+                                @Html.DisplayNameFor(m => m.WayDelivering)&nbsp;&nbsp;<a href="#" title="Справка Справка Справка">?</a>
+                            </div>
+                        </td>
+                        <td style="border-bottom-color: gainsboro; border-right-color: gainsboro;">
+                            <div style=" background-color: gainsboro; padding-left: 10px; padding-right: 10px; width: 300px;">
+                                <table cellpadding="12px" border="1px" style="width: 300px; border-color: #efefef;" data-ng-include="'wayDeliveringTemplate'"></table>
+                            </div>
+                            <br />
+                            <div style="width: 300px; padding-left: 10px;" class='container-fluid' ng-controller="TypeaheadCtrl">
+                                <input style="width:300px" type="text" placeholder="Введите значение" id="txtWaysDelivering"
+                                       ng-model="vm.wayDelivering"
+                                       typeahead-on-select="vm.addWayDelivering()"
+                                       maxlength="100" ng-click="getWaysDelivering()" typeahead="address for address in getWaysDelivering($viewValue) | filter:$viewValue" class="form-control">
+                                <i class="glyphicon glyphicon-refresh"></i>
+                            </div>
+                            <p style="vertical-align: middle; padding-left: 10px">
+                                @*<button data-ng-click="vm.addWayDelivering()">Добавить</button>*@
+                            </p>
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="border-bottom-color: gainsboro; text-align:right;">
+                            <div style="background-color: gainsboro; padding: 20px; width: 200px;text-align: right; ">
+                                @Html.DisplayNameFor(m => m.SubjectDelivering)&nbsp;&nbsp;<a href="#" title="Справка Справка Справка">?</a>
+                            </div>
+                        </td>
+                        <td style="border-bottom-color: gainsboro; border-right-color: gainsboro;">
+                            <div style=" background-color: gainsboro; padding-left: 10px; padding-right: 10px; width: 300px;">
+                                <table cellpadding="12px" border="1px" style="width: 300px; border-color: #efefef;" data-ng-include="'subjectsDeliveringTemplate'"></table>
+                            </div>
+                            <br />
+                            <div style="width: 300px; padding-left: 10px;" class='container-fluid' ng-controller="TypeaheadCtrl">
+                                <input style="width:300px" type="text" placeholder="Введите значение" id="txtSubjectsDelivering"
+                                       ng-model="vm.subjectDelivering"
+                                       typeahead-on-select="vm.addSubjectDelivering()"
+                                       maxlength="100" typeahead="address for address in getSubjectsSending($viewValue) | filter:$viewValue" class="form-control">
+                                <i class="glyphicon glyphicon-refresh"></i>
+                            </div>
+                            <p style="vertical-align: middle; padding-left: 10px">
+                                @*<button data-ng-click="vm.addSubjectDelivering()">Добавить</button>*@
+                            </p>
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="border-bottom-color: gainsboro; text-align:right;">
+                            @Html.DisplayNameFor(m => m.CodeNameStationDelivering)&nbsp;&nbsp;<a href="#" title="Справка Справка Справка">?</a>
+                        </td>
+                        <td style="border-bottom-color: gainsboro; border-right-color: gainsboro;">
+                            <div style=" background-color: gainsboro; padding-left: 10px; padding-right: 10px; width: 300px;">
+                                <table cellpadding="12px" border="1px" style="width: 300px; border-color: #efefef;" data-ng-include="'stationsDeliveringTemplate'"></table>
+                            </div>
+                            <br />
+                            <div style="width: 300px; padding-left: 10px;" class='container-fluid' ng-controller="TypeaheadCtrl">
+                                <input style="width:300px" type="text" placeholder="Введите значение" id="txtStationsDelivering"
+                                       ng-model="vm.stationDelivering"
+                                       typeahead-on-select="vm.addStationDelivering()"
+                                       maxlength="100" typeahead="address for address in getStationsDelivering($viewValue) | filter:$viewValue" class="form-control">
+                                <i ng-show="loading1Locations" class="glyphicon glyphicon-refresh"></i>
+                            </div>
+                            <p style="vertical-align: middle; padding-left: 10px">
+                                <label data-ng-repeat="act in vm.rbListStationDelivering">
+                                    <input name="stationDeliveringSearchParam"
+                                           type="radio"
+                                           value="{{act}}"
+                                           ng-model="vm.stationDeliveringSearchParam" ng-change="vm.rbListStationDeliveringClick()" />
+                                    {{act}}
+                                </label>
+                            </p>
+
+                        </td>
+                    </tr>
+
+                </table>
+                <!-------------------------Сведения о поставке------------------------->
+
+
+                <table style="background-color: gainsboro; border: 1px; border-bottom-color: gainsboro; border-left-color: gainsboro; border-top-color: gainsboro; " border="1">
+                    <tr>
+                        <td style="border-bottom-color: gainsboro;">
+                            <div style="float: left; background-color: gainsboro; padding: 0px; width: 257px; text-align: right; padding-right: 10px; padding-top: 5px;">
+                                <p style="font-weight:bold;font-size:13px">@Strings.Filter_TranspportationInfo</p>
+                            </div>
+                        </td>
+                        <td style="border-bottom-color: gainsboro; border-right-color: gainsboro;"></td>
+
+                    </tr>
+                    <tr>
+                        <td style="border-bottom-color: gainsboro; text-align:right;">
+                            <div style="background-color: gainsboro; padding: 20px; width: 200px;text-align: right; ">
+                                @Html.DisplayNameFor(m => m.OwnerVagon)&nbsp;&nbsp;<a href="#" title="Справка Справка Справка">?</a>
+                            </div>
+                        </td>
+                        <td style="border-bottom-color: gainsboro; border-right-color: gainsboro;">
+                            <div style=" background-color: gainsboro; padding-left: 10px; padding-right: 10px; width: 300px;">
+                                <table cellpadding="12px" border="1px" style="width: 300px; border-color: #efefef;" data-ng-include="'ownersVagonTemplate'"></table>
+                            </div>
+                            <br />
+                            <div style="width: 300px; padding-left: 10px;" class='container-fluid' ng-controller="TypeaheadCtrl">
+                                <input type="text" id="txtOwnerVagon" style="width: 300px" placeholder="Введите значение"
+                                       ng-model="vm.ownerVagon"
+                                       typeahead-on-select="vm.addOwnerVagon()"
+                                       maxlength="100" typeahead="address for address in getOwnerVagon($viewValue) | filter:$viewValue" class="form-control">
+                                <i class="glyphicon glyphicon-refresh"></i>
+                            </div>
+                            <p style="vertical-align: middle; padding-left: 10px">
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom-color: gainsboro; text-align:right;">
+                            <div style="background-color: gainsboro; padding: 20px; width: 200px;text-align: right; ">
+                                @Html.DisplayNameFor(m => m.RenterVagon)&nbsp;&nbsp;<a href="#" title="Справка Справка Справка">?</a>
+                            </div>
+                        </td>
+                        <td style="border-bottom-color: gainsboro; border-right-color: gainsboro;">
+                            <div style=" background-color: gainsboro; padding-left: 10px; padding-right: 10px; width: 300px;">
+                                <table cellpadding="12px" border="1px" style="width: 300px; border-color: #efefef;" data-ng-include="'rentersVagonTemplate'"></table>
+                            </div>
+                            <br />
+                            <div style="width: 300px; padding-left: 10px;" class='container-fluid' ng-controller="TypeaheadCtrl">
+                                <input type="text" style="width: 300px" id="txtRenterVagon" placeholder="Введите значение"
+                                       ng-model="vm.renterVagon"
+                                       typeahead-on-select="vm.addRenterVagon()"
+                                       maxlength="100" typeahead="address for address in getRenterVagon($viewValue) | filter:$viewValue" class="form-control">
+                                <i class="glyphicon glyphicon-refresh"></i>
+                            </div>
+                            <p style="vertical-align: middle; padding-left: 10px">
+                                @*<button data-ng-click="vm.addRenterVagon()">Добавить</button>*@
+                            </p>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom-color: gainsboro; text-align:right;">
+                            <div style="background-color: gainsboro; padding: 20px; width: 200px;text-align: right; ">
+                                @Html.DisplayNameFor(m => m.Payer)&nbsp;&nbsp;<a href="#" title="Справка Справка Справка">?</a>
+                            </div>
+                        </td>
+                        <td style="border-bottom-color: gainsboro; border-right-color: gainsboro;">
+                            <div style=" background-color: gainsboro; padding-left: 10px; padding-right: 10px; width: 300px;">
+                                <table cellpadding="12px" border="1px" style="width: 300px; border-color: #efefef;" data-ng-include="'payersTemplate'"></table>
+                            </div>
+                            <br />
+                            <div style="width: 300px; padding-left: 10px;" class='container-fluid' ng-controller="TypeaheadCtrl">
+                                <input type="text" style="width: 300px" id="txtPayer" placeholder="Введите значение"
+                                       ng-model="vm.payer"
+                                       typeahead-on-select="vm.addPayer()"
+                                       maxlength="100" typeahead="address for address in getPayer($viewValue) | filter:$viewValue" class="form-control">
+                                <i class="glyphicon glyphicon-refresh"></i>
+                            </div>
+                            <p style="vertical-align: middle; padding-left: 10px">
+                                @*<button data-ng-click="vm.addPayer()">Добавить</button>*@
+                            </p>
+
+                        </td>
+                    </tr>
+                </table>
+               
+            </div>
+            <div style="float:right; width:350px; background-color:white;  ">. </div>
+
+            <div style="display:none">
+                <script id="filtersTemplate" type="text/ng-template">
+                    <tr data-ng-repeat="filter in vm.allFiltersSettingsList track by $index">
+                        <td style="width:90%">
+                            {{filter.filterName}}
+                        </td>
+                        <td><button data-ng-click="vm.confirmFilter(filter.filterId)">Применить</button></td>
+                        <td><button data-ng-click="vm.deleteFilter(filter.filterId)">X</button></td>
+                    </tr>
+                </script>
+                <script id="countrysSendingTemplate" type="text/ng-template">
+                    <tr data-ng-repeat="company in vm.selectedCountrySending track by $index">
+                        <td style="width:90%; height:5px;">
+                            {{company.name}}
+                        </td>
+                        <td><button data-ng-click="vm.deleteItem(company, vm.selectedCountrySending)">X</button></td>
+                    </tr>
+                </script>
+                <script id="waysSendingTemplate" type="text/ng-template">
+                    <tr data-ng-repeat="way in vm.selectedWaysSending track by $index">
+                        <td style="width:90%">
+                            {{way.name}}
+                        </td>
+                        <td><button data-ng-click="vm.deleteItem(way, vm.selectedWaysSending)">X</button></td>
+                    </tr>
+                </script>
+
+                <script id="subjectsSendingTemplate" type="text/ng-template">
+                    <tr data-ng-repeat="subject in vm.selectedSubjectsSending track by $index">
+                        <td style="width:90%">
+                            {{subject.name}}
+                        </td>
+                        <td><button data-ng-click="vm.deleteItem(subject, vm.selectedSubjectsSending)">X</button></td>
+                    </tr>
+                </script>
+                <script id="stationsSendingTemplate" type="text/ng-template">
+                    <tr data-ng-repeat="station in vm.stationsSending track by $index">
+                        <td style="width:90%">
+                            {{station.name}}
+                        </td>
+                        <td><button data-ng-click="vm.deleteItem(station, vm.stationsSending)">X</button></td>
+                    </tr>
+                </script>
+                <script id="countriesDeliveringTemplate" type="text/ng-template">
+                    <tr data-ng-repeat="country in vm.selectedCountryDelivering track by $index">
+                        <td style="width:90%">
+                            {{country.name}}
+                        </td>
+                        <td><button data-ng-click="vm.deleteItem(country, vm.selectedCountryDelivering)">X</button></td>
+                    </tr>
+                </script>
+
+                <script id="wayDeliveringTemplate" type="text/ng-template">
+                    <tr data-ng-repeat="way in vm.selectedWaysDelivering track by $index">
+                        <td style="width:90%">
+                            {{way.name}}
+                        </td>
+                        <td><button data-ng-click="vm.deleteItem(way, vm.selectedWaysDelivering)">X</button></td>
+                    </tr>
+                </script>
+
+                <script id="subjectsDeliveringTemplate" type="text/ng-template">
+                    <tr data-ng-repeat="subject in vm.selectedSubjectsDelivering track by $index">
+                        <td style="width:90%">
+                            {{subject.name}}
+                        </td>
+                        <td><button data-ng-click="vm.deleteItem(subject, vm.selectedSubjectsDelivering)">X</button></td>
+                    </tr>
+                </script>
+
+                <script id="stationsDeliveringTemplate" type="text/ng-template">
+                    <tr data-ng-repeat="station in vm.stationsDelivering track by $index">
+                        <td style="width:90%">
+                            {{station.name}}
+                        </td>
+                        <td><button data-ng-click="vm.deleteItem(station, vm.stationsDelivering)">X</button></td>
+                    </tr>
+                </script>
+            </div>
+            
+            <br />
+            
+            <div style="display:none">
+                <script id="ownersVagonTemplate" type="text/ng-template">
+                    <tr data-ng-repeat="owner in vm.ownersVagon track by $index">
+                        <td style="width:90%">
+                            {{owner.name}}
+                        </td>
+                        <td><button data-ng-click="vm.deleteItem(owner, vm.ownersVagon)">X</button></td>
+                    </tr>
+                </script>
+                <script id="rentersVagonTemplate" type="text/ng-template">
+                    <tr data-ng-repeat="renter in vm.rentersVagon track by $index">
+                        <td style="width:90%">
+                            {{renter.name}}
+                        </td>
+                        <td><button data-ng-click="vm.deleteItem(renter, vm.rentersVagon)">X</button></td>
+                    </tr>
+                </script>
+                <script id="payersTemplate" type="text/ng-template">
+                    <tr data-ng-repeat="payer in vm.payers track by $index">
+                        <td style="width:90%">
+                            {{payer.name}}
+                        </td>
+                        <td><button data-ng-click="vm.deleteItem(payer, vm.payers)">X</button></td>
+                    </tr>
+                </script>
+            </div>
+        </div>
+        
+    </div> 
+    <!--Выбор полей-->
+    <div style="float:left; width:100%;">
+        <div style="float:left;"></div>
+        <div style="float:left;">
+            <table>
+                <tr>
+                    <td colspan="2">
+                        <p style="font-weight:bold;font-size:18px">@Strings.Filter_SelectionFieldReport</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b> Доступные значения</b>
+                    </td>
+                    <td style="padding:30px;"></td>
+                    <td>
+                        <b> Выбранные значения</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <div style="float:left;">
+                            @*ng-change="vm.onchangeLeftColumns(this)"*@
+                            <select size="20" style="width:270px;" multiple="multiple" ng-model="vm.column" ng-options="c.name for c in vm.columns | orderBy:predicate"></select>
+                        </div>
+                        <div style="float:left; ">
+                            <br /><br /><br />
+                            <button data-ng-click="vm.addColumns()" style="width:100px">добавить>></button><br /><br />
+
+                            <button data-ng-click="vm.deleteColumns()" style="width:100px"><<удалить</button><br /><br />
+                            <button data-ng-click="vm.addColumnsAll()" style="width:100px">добавить ВСЕ>></button><br /><br />
+                            <button data-ng-click="vm.deleteColumnsAll()" style="width:100px"><<удалить все</button>
+                        </div>
+                        <div style="float:left;">
+                            <select id="selectedColumnsTxt" size="20" style="width:270px;" multiple="multiple"  ng-model="vm.selectedColumn"  ng-options="c.name for c in vm.selectedColumns"></select>
+
+                            @*<select id="selectedColumnsTxt" size="20" style="width:270px;" multiple="multiple" ng-model="vm.selectedColumn" ng-selected="isInGoalIds()" data-ng-include="'columsSelectedTemplate'"></select>
+                                <div style="display:none;">
+                                    <script id="columsSelectedTemplate" type="text/ng-template">
+                                        <option data-ng-repeat="c in vm.selectedColumns track by $index">
+                                            {{c.name}}
+                                        </option>
+                                    </script>
+                                </div>*@
+                        </div>
+                        <div style="float:left;">
+                            <br /><br /><br />
+                            <button data-ng-click="vm.moveUpColumns()" style="width:100px">Вверх</button><br /><br />
+                            <button data-ng-click="vm.moveDownColumns()" style="width:100px">Вниз</button>
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+        
+    </div>
+    <div>
+        <div style="float:left; width:100%;  ">
+
+            <div style="float:left;padding: 10px">
+                <button id="btnCalculateReport" data-ng-click="vm.calculateForm()" style="height:30px;width:150px">@Strings.Filter_Button_Calculate</button>
+                <button id="btnSearchReport" data-ng-click="vm.searchForm()" style="height:30px;width:150px">@Strings.Filter_Button_DoReport</button>
+                <button data-ng-click="vm.showRowsCount()" style="height:30px;width:250px">@Strings.Filter_Button_ShowRowsCount</button>
+                <button id="btnDownLoadReport" data-ng-click="vm.downloadReport()" style="height:30px;width:150px" ng-disabled="vm.reportDisabled">Скачать отчет</button>
+
+
+            </div>
+
+
+            @*<div style="float:left;padding-left:60px; display:none;">
+                    <p style="font-weight:bold;font-size:18px">Расчет калькулятора: {{vm.calculatorResult}} <a href="#" title="{{vm.calcCoeffDetailReport}}">?</a></p>
+                </div>*@
+        </div>
+    </div> 
+    <div style="">
+        <div style="float:left;  ">
+          
+            <div id="divSearchResultGrid" style="float: left;">
+                <div id="divTotalRecords" style="display:none;">
+                    <b>
+                        Всего найдено: {{vm.totalRecords}}
+                        <br /> Сгенерировано за: {{vm.TimeProgress}}
+
+                    </b> <br />
+                </div>
+                <table cellpadding="5px;">
+                    <tbody data-ng-include="'/app/views/_entityPaging.html'"></tbody>
+                </table>
+                <table cellpadding="5px;" border="1">
+                    <tbody data-ng-include="'/app/views/_entitySearchResult.html'"></tbody>
+                </table>
+            </div>
+
+            <div id="divSearchResultEmpty" style="display: none;width: 100%; text-align:center;">По вашему запросу ничего не найдено</div>
+        </div>
+    </div>
+</div>  

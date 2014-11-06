@@ -1,0 +1,10 @@
+﻿
+<tr >
+    <th data-bindonce data-bo-id="e.header" data-ng-repeat="e in vm.headers"> {{e.header}}</th>
+</tr>
+<tr data-bindonce data-bo-id="e.id" data-ng-repeat="e in vm.searchResult">
+    
+    <td data-bindonce data-bo-id="e.id" data-ng-repeat="ee in e.values">
+        {{ee.value}}
+    </td>
+</tr>

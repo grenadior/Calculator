@@ -1,0 +1,13 @@
+C:\CalcZd\CalculatorZd\BO\bin\Release\BO.dll
+C:\CalcZd\CalculatorZd\BO\bin\Release\BO.pdb
+C:\CalcZd\CalculatorZd\BO\obj\Release\BO.dll
+C:\CalcZd\CalculatorZd\BO\obj\Release\BO.pdb
+C:\CalcZd\CalculatorZd\BO\bin\Release\Newtonsoft.Json.dll
+C:\CalcZd\CalculatorZd\BO\bin\Release\System.Web.WebPages.Razor.dll
+C:\CalcZd\CalculatorZd\BO\bin\Release\System.Web.WebPages.dll
+C:\CalcZd\CalculatorZd\BO\bin\Release\System.Web.WebPages.Deployment.dll
+C:\CalcZd\CalculatorZd\BO\bin\Release\Newtonsoft.Json.xml
+C:\CalcZd\CalculatorZd\BO\bin\Release\System.Web.WebPages.Razor.xml
+C:\CalcZd\CalculatorZd\BO\bin\Release\System.Web.WebPages.xml
+C:\CalcZd\CalculatorZd\BO\bin\Release\System.Web.WebPages.Deployment.xml
+C:\CalcZd\CalculatorZd\BO\obj\Release\BO.csprojResolveAssemblyReference.cache

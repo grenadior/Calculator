@@ -1,0 +1,6 @@
+C:\CalculatorZd\WebSite\CalculatorZd\Common.MVC\bin\Common.MVC.dll.config
+C:\CalculatorZd\WebSite\CalculatorZd\Common.MVC\bin\Common.MVC.dll
+C:\CalculatorZd\WebSite\CalculatorZd\Common.MVC\bin\Common.MVC.pdb
+C:\CalculatorZd\WebSite\CalculatorZd\Common.MVC\obj\Debug\Common.MVC.csprojResolveAssemblyReference.cache
+C:\CalculatorZd\WebSite\CalculatorZd\Common.MVC\obj\Debug\Common.MVC.dll
+C:\CalculatorZd\WebSite\CalculatorZd\Common.MVC\obj\Debug\Common.MVC.pdb

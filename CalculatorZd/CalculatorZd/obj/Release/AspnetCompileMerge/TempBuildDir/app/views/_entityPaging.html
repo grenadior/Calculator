@@ -1,0 +1,5 @@
+﻿<tr>
+    <td data-ng-repeat="page in vm.paging track by $index">
+        <a href="#/{{page.id}}" data-ng-click="vm.loadPage(page.id, vm.selectedFilters)">{{page.id}}</a>
+    </td>
+</tr>

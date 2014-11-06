@@ -1,0 +1,25 @@
+﻿<h2>List of loads</h2>
+<div>
+    <label>
+        Items per page
+        <select data-bind="value: itemsPerPage">
+            <option value="100">100</option>
+            <option value="1000">1000</option>
+        </select>
+    </label>
+</div><!--
+<div>
+    <label>
+        Second row price:
+        <input type="text" data-bind="value: entities()[1].rates()[0].cost"/>
+    </label>
+</div>-->
+<div>
+    <a href="#/1" data-bind="click: loadPage.bind($data, 1)">1</a>
+    <a href="#/2" data-bind="click: loadPage.bind($data, 2)">2</a>
+    <a href="#/3" data-bind="click: loadPage.bind($data, 3)">3</a>
+    <a href="#/4" data-bind="click: loadPage.bind($data, 4)">4</a>
+    <a href="#/5" data-bind="click: loadPage.bind($data, 5)">5</a>
+</div>
+
+<div data-bind="compose: '_entity.html'"></div>

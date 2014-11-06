@@ -1,0 +1,24 @@
+@model CalculatorZd.Models.EmailActivationModels
+
+@{
+    ViewBag.Title = "Активация email адреса.";
+}
+
+<div class="control-group">
+    <h2>@ViewBag.Title</h2>
+    @if (ViewBag.Status)
+    {
+        <div class="controls" style="color:green;">
+            @Html.Raw(ViewBag.Message)
+        </div>
+    }
+    else
+    {
+        <div class="controls" style="color:red;">
+            @Html.Raw(ViewBag.Message)
+        </div>
+    }
+
+</div>
+
+

@@ -1,0 +1,88 @@
+﻿<div id="{{e.id}}" data-ng-class="{gridRowColor: $even}" data-sly-repeat="e in vm.entities">
+    <div style="float: left; width:100px">
+        <a name="someFakeAnchor"></a>
+        <span style="margin-top: 10px;">
+            <input type="checkbox">
+        </span>
+    </div>
+    <div style="float: left; width:100px">
+        <div class="gridCell directionText">
+			<div style="font-weight: bold;">RUS</div>
+            <a title="посмотреть маршрут {{e.from.city}} - {{e.to.city}}" target="_blank" style="color: #358B0A;" href="#">{{e.distance}} км</a><br>
+        </div>
+        <div class="cellBorder"></div>
+    </div>
+    <div style="float: left; width:100px">
+        <div class="gridCell">
+            <div>
+                <span title="{{e.truck.details}}" style="font-weight: bold;">{{e.truck.details}}</span>
+            </div>
+            <span title="загр:{{e.truck.load}}" class="noteText">загр:{{e.truck.load}}</span>
+            <span title="выгр:{{e.truck.unload}}" class="noteText">выгр:{{e.truck.unload}}</span>
+            <div class="noteText">
+                {{e.truck.note}}
+            </div>
+        </div>
+        <div class="cellBorder"></div>
+    </div>
+    <div style="float: left; width:100px">
+        <div class="gridCell">
+			<div>
+                <div>
+                    <div style="display: table-cell;">
+                        <div style="display: table-cell;"></div>
+                        <b>{{e.load.weight}}</b> / <b>{{e.load.volume}}</b>
+                    </div>
+                </div>
+                <div style="clear: both;">
+                </div>
+                <div style="float: left; padding-right: 5px;">
+                    {{e.load.name}}
+                </div>
+                <div style="float: left;"></div>
+                <div style="clear: both;"></div>
+                <div class="noteText" style="white-space: nowrap; float: left;"></div>
+            </div>
+        </div>
+        <div class="cellBorder"></div>
+    </div>
+    <div style="float: left; width:100px">
+        <div class="gridCell">
+			<div>
+				<span class="lblCityNameMain" style="white-space: nowrap">{{e.from.city}}</span>
+                <span class="noteText" style="white-space: nowrap;" data-ng-show="e.from.region">{{e.from.region}}</span>
+                <div>
+                    <span data-ng-show="e.from.street">{{e.from.street}}</span>
+                 </div>
+                <div></div>
+                <b data-ng-show="e.from.ready">готов</b> 
+                <br>
+            </div>
+        </div>
+        <div class="cellBorder"></div>
+    </div>
+    <div style="float: left; width:100px">
+        <div class="gridCell">
+            <div>
+                <div style="white-space: nowrap" class="lblCityNameMain">
+                    {{e.to.city}}
+                </div>
+                <div class="noteText" style="white-space: nowrap" data-ng-show="e.to.region">
+                    {{e.to.region}}
+                </div>
+                <div data-ng-show="e.to.street">
+                    <span>{{e.to.street}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="cellBorder"></div>
+
+    </div>
+    <div style="float: left; width:100px">
+        <div class="gridCell" style="border-right: none 0px !important;">
+			<div data-sly-repeat="r in e.rates" style="white-space: nowrap;">
+                <span style="white-space: nowrap;">{{r.cost}} </span> {{r.note}} <small class="noteText">({{r.cost/e.distance | number:2}} р/км)</small>
+            </div>
+        </div>
+    </div>
+</div>

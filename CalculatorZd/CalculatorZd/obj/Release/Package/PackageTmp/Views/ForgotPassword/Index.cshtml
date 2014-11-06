@@ -1,0 +1,57 @@
+﻿@using System.Web.UI.WebControls
+@using BO.Implementation
+@using CalculatorZd.Models
+@model CalculatorZd.Models.ForgetPasswordViewModel
+@{
+    ViewBag.Title = "Забыли пароль?";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<hgroup class="title">
+    <h3>Забыли пароль?</h3>
+</hgroup> 
+<div class="row-fluid">
+    <div class="span6">
+        <section id="loginForm">
+            @using (Html.BeginForm("TryRestorePassword", "ForgotPassword"))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <fieldset class="form-horizontal">
+                    <legend> </legend>
+                    <div class="control-group">
+                        <div style="font-size:14px">В форму ниже введите свой электронный адрес, указанный при регистрации, и через несколько минут на Ваш E-mail придет письмо с ссылкой для восстановления пароля</div>
+                        <br />
+                        @Html.LabelFor(m => m.Email, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.TextBoxFor(m => m.Email)
+                            @Html.ValidationMessageFor(m => m.Email, null, new { @class = "help-inline" })
+
+                        </div>
+                        @if (Model.EmailNotFound)
+                        {
+                            <div class="controls">
+                                <span style="color: red;">Указанный email не найден или не активирован на сайте</span>
+                            </div>
+                        }
+                        <div class="controls">
+                            <br />
+                            <input type="submit" value="Отправить" class="btn" />
+                        </div>
+                    </div>
+
+                    @if (Model.StatusMailSending == MailSendingStatus.Failure)
+                    {
+                        <div class="controls">
+                            <span style="color: red;">Во врем отправки письма с ссылкой для смены пароля произошла ошибка! Попробуйте позднее или обратитесь в службу технической поддержки.</span>
+                        </div>
+                    }
+                </fieldset>
+            }
+        </section>
+    </div>
+
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,59 @@
+﻿@using BO.Implementation
+@using CalculatorZd.Models
+@using Common.Api
+@model CalculatorZd.Models.FirmReportViewModel
+
+@{
+    ViewBag.Title = "Отчеты";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Отчеты</h2>
+<table  style="width:50%;border:1px;" border="1">
+    <tr>
+              <th>Номер</th>
+              @*<th>Статус</th>*@
+              <th>Дата</th>
+              <th>Размер</th>
+              <th>Ссылка</th>
+          </tr>
+    @if (Model.FirmReports.Count > 0)
+    {
+        foreach (FirmReport item in Model.FirmReports)
+        {
+            <tr>
+                <td>
+                    @item.Number
+                </td>
+                @*<td>
+                    @item.Status
+                </td>*@
+                <td>
+                    @item.AddDate
+                </td>
+                <td>
+                    @if(item.FileSize > 0)
+                    {
+                       @String.Format("{0:f3} Мб", item.FileSize / (float)1000000)
+                    }
+                </td>
+                <td>
+                    @if ((StatusProcess) item.StatusID != StatusProcess.Ready)
+                    {
+                      <font color="red">@item.Status</font>
+                    }
+                    else
+                    {
+                       <a href='@Url.Content(ServerProperties.Instance.ReportStoragePath + item.FileName)'><font color="green">Скачать</font></a>
+                    }
+                </td>
+            </tr>
+        }
+    }
+    else
+    {
+        <p>Данные об отчетах отсутствуют</p>
+    }
+  
+</table>
+

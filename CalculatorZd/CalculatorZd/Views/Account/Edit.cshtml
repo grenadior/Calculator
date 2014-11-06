@@ -1,0 +1,159 @@
+@model CalculatorZd.Models.FirmProfileBaseModel
+
+@{
+    ViewBag.Title = "Редактирование";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Save", "Account"))
+{
+    @Html.AntiForgeryToken()
+
+    <fieldset class="form-horizontal">
+        <legend>Редактирование</legend>
+
+         @Html.Hidden("ID", Model.ID)
+        <div class="control-group">
+              @Html.DisplayNameFor(model => model.FirmName)
+            <div class="controls">
+                @Html.DisplayFor(model => model.FirmName)
+                @Html.Hidden("FirmName", Model.FirmName)
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.OKPO, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.OKPO)
+				@Html.ValidationMessageFor(model => model.OKPO, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.INN, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.INN)
+				@Html.ValidationMessageFor(model => model.INN, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Address, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.Address)
+				@Html.ValidationMessageFor(model => model.Address, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.PostAddress, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.PostAddress)
+				@Html.ValidationMessageFor(model => model.PostAddress, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Phone, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.Phone)
+				@Html.ValidationMessageFor(model => model.Phone, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Phone2, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.Phone2)
+				@Html.ValidationMessageFor(model => model.Phone2, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Fax, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.Fax)
+				@Html.ValidationMessageFor(model => model.Fax, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Fax2, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.Fax2)
+				@Html.ValidationMessageFor(model => model.Fax2, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.FIODirector, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.FIODirector)
+                @Html.ValidationMessageFor(model => model.FIODirector, null, new { @class = "help-inline" })
+            </div>
+        </div>
+        
+        <div class="control-group">
+            @Html.LabelFor(model => model.AdminEmail, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.DisplayFor(model => model.AdminEmail)
+                    @Html.Hidden("AdminEmail", Model.AdminEmail)
+           </div>
+       </div>
+
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.FIOBuh, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.FIOBuh)
+				@Html.ValidationMessageFor(model => model.FIOBuh, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.FIOContact, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.FIOContact)
+				@Html.ValidationMessageFor(model => model.FIOContact, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.ContactPhone, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.ContactPhone)
+				@Html.ValidationMessageFor(model => model.ContactPhone, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.ContactMobile, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.ContactMobile)
+				@Html.ValidationMessageFor(model => model.ContactMobile, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+      
+        <div class="control-group">
+            @Html.LabelFor(model => model.ContactEmail, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.ContactEmail)
+                @Html.ValidationMessageFor(model => model.ContactEmail, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Сохранить" class="btn" /> @*|<input type="submit" value="Отмена" class="btn" />*@
+        </div>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Назад", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

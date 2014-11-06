@@ -1,0 +1,170 @@
+@using Common.Api
+@model CalculatorZd.Models.FirmProfileBaseModel
+
+@{
+    ViewBag.Title = "Информация о фирме";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Сменить пароль", "Manage", "Account")
+</p>
+
+<p>
+    @if (SessionManager.FirmInfo != null)
+    {
+        if (SessionManager.FirmInfo.IsNonActivated)
+        {
+            @Html.ActionLink("Отправить ссылку для активации e-mail", "Index", "SendActivationEmailLink");
+
+        }
+        else
+        {
+            @Html.ActionLink("Сменить e-mail администратора", "Index", "SendActivationEmailLink");
+        }
+    }
+</p>
+
+<p>
+    @if (SessionManager.FirmInfo != null)
+    {
+        @Html.ActionLink("Отчеты", "Index", "FirmReport");
+    }
+</p>
+<p>
+    @Html.ActionLink("Редактировать информацию о фирме", "Edit", new { id = Model.ID })
+</p>
+<table class="table" style="width:50%">
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.FirmName)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.FirmName)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.OKPO)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.OKPO)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.INN)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.INN)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Address)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.PostAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.PostAddress)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.Phone)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Phone)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.Phone2)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Phone2)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.Fax)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Fax)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.Fax2)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Fax2)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.FIODirector)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.FIODirector)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.FIOBuh)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.FIOBuh)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.AdminEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.AdminEmail)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.FIOContact)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.FIOContact)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.ContactPhone)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.ContactPhone)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.ContactMobile)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.ContactMobile)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.ContactEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.ContactEmail)
+        </td>
+    </tr>
+
+
+</table>

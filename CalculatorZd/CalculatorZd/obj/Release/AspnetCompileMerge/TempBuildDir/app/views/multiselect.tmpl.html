@@ -1,0 +1,20 @@
+﻿<div class="dropdown">
+    <button class="btn" data-ng-click="toggleSelect()" data-ng-disabled="disabled" data-ng-class="{'error': !valid()}">
+        <span class="pull-left">{{header}}</span>
+        <span class="caret pull-right"></span>
+    </button>
+    <ul class="dropdown-menu">
+        <li>
+            <input class="input-block-level" type="text" data-ng-model="searchText.label" autofocus="autofocus" placeholder="Filter" />
+        </li>
+        <li ng-show="multiple">
+            <button class="btn-link btn-small" data-ng-click="checkAll()"><i class="icon-ok"></i>Выбрать все </button>
+            <button class="btn-link btn-small" data-ng-click="uncheckAll()"><i class="icon-remove"></i> Отменить выбранное </button>
+        </li>
+        <li data-ng-repeat="i in items | filter:searchText">
+            <a data-ng-click="select(i); focus()">
+                <i data-ng-class="{'icon-ok': i.checked, 'icon-empty': !i.checked}"></i>{{i.label}}
+            </a>
+        </li>
+    </ul>
+</div>

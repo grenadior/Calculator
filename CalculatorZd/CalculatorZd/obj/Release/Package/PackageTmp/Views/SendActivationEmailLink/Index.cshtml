@@ -1,0 +1,24 @@
+@model CalculatorZd.Models.EmailActivationSendModels
+@using BO.Implementation;
+@using Common.Api
+@{
+    ViewBag.Title = SessionManager.FirmInfo.IsNonActivated ? "Отправить ссылку активации e-mail" : "Смена e-mail администратора";
+}
+
+<hgroup class="title">
+    <h4>@ViewBag.Title</h4>
+</hgroup>
+
+@Html.AntiForgeryToken()
+               
+@using (Html.BeginForm("SendEmailActivationCode", "SendActivationEmailLink", FormMethod.Post, new { id = "frmSendActivationLink" }))
+{
+    <div class="control-group">
+        <div class="controls">
+            @Html.LabelFor(m => m.Email)
+            @Html.TextBoxFor(m => m.Email)
+            @Html.ValidationMessageFor(m => m.Email)
+        </div>
+    </div>
+    <input type="submit" id="btnRestorePassword" value="@Localization.WebResources.WebResources.AccountResource.SubmitButtonText" />
+}

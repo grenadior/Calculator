@@ -1,0 +1,7 @@
+C:\CalculatorZd\WebSite\CalculatorZd\WebResources\bin\Common.MVC.Resources.dll.config
+C:\CalculatorZd\WebSite\CalculatorZd\WebResources\bin\Common.MVC.Resources.dll
+C:\CalculatorZd\WebSite\CalculatorZd\WebResources\bin\Common.MVC.Resources.pdb
+C:\CalculatorZd\WebSite\CalculatorZd\WebResources\obj\Debug\Common.MVC.WebResources.csproj.GenerateResource.Cache
+C:\CalculatorZd\WebSite\CalculatorZd\WebResources\obj\Debug\Common.MVC.Resources.dll
+C:\CalculatorZd\WebSite\CalculatorZd\WebResources\obj\Debug\Common.MVC.Resources.pdb
+C:\CalculatorZd\WebSite\CalculatorZd\WebResources\obj\Debug\Common.MVC.Resources.AccountResource.resources

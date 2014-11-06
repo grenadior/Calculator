@@ -1,0 +1,30 @@
+﻿@using BO.Implementation
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        <div style="white-space: pre-wrap; "></div>
+        @Html.Raw( @ViewBag.CacheReport)
+
+        @using (Ajax.BeginForm("ClearAllCache", "Admin", FormMethod.Post, null))
+        {
+            <input type="submit" value="Clear all caches" />
+        }
+        
+        @using (Ajax.BeginForm("ReloadServerProps", "Admin", FormMethod.Post, null))
+        {
+            <input type="submit" value="ReloadServerProps" />
+        }
+    </div>
+    <div>ServerProperties.Instance.EmailPort:@ServerProperties.Instance.EmailPort</div>
+</body>
+</html>

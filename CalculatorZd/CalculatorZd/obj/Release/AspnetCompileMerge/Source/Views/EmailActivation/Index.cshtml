@@ -1,0 +1,28 @@
+@model CalculatorZd.Models.EmailActivationModels
+@using BO.Implementation;
+@{
+    ViewBag.Title = "Активация e-mail";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+</hgroup>
+
+@Html.AntiForgeryToken()
+               
+<div class="control-group">
+    
+    @if (ViewBag.Status)
+    {
+        <div class="controls" style="color:green;">
+            @Html.Raw(ViewBag.Message)
+        </div>
+    }
+    else
+    {
+        <div class="controls" style="color:red;">
+            @Html.Raw(ViewBag.Message)
+        </div>
+    }
+        
+</div>       

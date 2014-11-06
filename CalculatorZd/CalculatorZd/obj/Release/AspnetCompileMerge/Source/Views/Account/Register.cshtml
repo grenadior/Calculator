@@ -1,0 +1,136 @@
+@model CalculatorZd.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Регистрация";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+</hgroup>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    
+    <fieldset class="form-horizontal">
+      
+        <div class="control-group">
+          @Html.LabelFor(m => m.Login, new { @class = "control-label" })
+          <div class="controls">
+              @Html.TextBoxFor(m => m.Login)
+          </div>
+            <div style="height:2px;"></div>
+            @Html.LabelFor(m => m.Password, new { @class = "control-label" })
+            <div class="controls">
+                @Html.PasswordFor(m => m.Password)
+            </div>
+            <div style="height:2px;"></div>
+      
+            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label" })
+            <div class="controls">
+                @Html.PasswordFor(m => m.ConfirmPassword)
+            </div>
+            <div style="height:2px;"></div>
+      
+            @Html.LabelFor(m => m.FirmName, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.FirmName)
+               </div>
+            <div style="height:22px;"></div>
+
+            @Html.LabelFor(m => m.OKPO, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.OKPO)
+                    </div>
+            <div style="height:2px;"></div>
+
+            @Html.LabelFor(m => m.INN, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.INN)
+                    </div>
+            <div style="height:2px;"></div>
+            
+
+            @Html.LabelFor(m => m.Address, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Address)
+                    </div>
+            <div style="height:2px;"></div>
+
+            @Html.LabelFor(m => m.PostAddress, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.PostAddress)
+                    </div>
+            <div style="height:2px;"></div>
+
+            @Html.LabelFor(m => m.Phone, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Phone)
+                    </div>
+            <div style="height:2px;"></div>
+
+            @Html.LabelFor(m => m.Phone2, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Phone2)
+                    </div>
+            <div style="height:2px;"></div>
+
+
+            @Html.LabelFor(m => m.Fax, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(m => m.Fax)
+            </div>
+            <div style="height:2px;"></div>
+
+            @Html.LabelFor(m => m.Fax2, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Fax2)
+                    </div>
+            <div style="height:2px;"></div>
+           
+            @Html.LabelFor(m => m.AdminEmail, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.AdminEmail)
+                    </div>
+            <div style="height:2px;"></div>
+
+            @Html.LabelFor(m => m.FIODirector, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.FIODirector)
+                    </div>
+            <div style="height:2px;"></div>
+
+            @Html.LabelFor(m => m.FIOBuh, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.FIOBuh)
+                    </div>
+       
+        <hr />
+            @Html.LabelFor(m => m.FIOContact, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.FIOContact)
+                    </div>
+      
+            @Html.LabelFor(m => m.ContactMobile, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.ContactMobile)
+                    </div>
+
+            @Html.LabelFor(m => m.ContactEmail, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.ContactEmail)
+                    </div>
+            @Html.LabelFor(m => m.ContactPhone, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.ContactPhone)
+                    </div>
+        </div>
+        <div class="form-actions no-color">
+            <input type="submit" value="Зарегистрироваться" class="btn" />
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

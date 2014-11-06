@@ -1,0 +1,8 @@
+C:\CalculatorZd\WebSite\CalculatorZd\WebResources\bin\WebResources.dll.config
+C:\CalculatorZd\WebSite\CalculatorZd\WebResources\bin\WebResources.dll
+C:\CalculatorZd\WebSite\CalculatorZd\WebResources\bin\WebResources.pdb
+C:\CalculatorZd\WebSite\CalculatorZd\WebResources\obj\Debug\WebResources.csprojResolveAssemblyReference.cache
+C:\CalculatorZd\WebSite\CalculatorZd\WebResources\obj\Debug\WebResources.Account.resources
+C:\CalculatorZd\WebSite\CalculatorZd\WebResources\obj\Debug\WebResources.csproj.GenerateResource.Cache
+C:\CalculatorZd\WebSite\CalculatorZd\WebResources\obj\Debug\WebResources.dll
+C:\CalculatorZd\WebSite\CalculatorZd\WebResources\obj\Debug\WebResources.pdb

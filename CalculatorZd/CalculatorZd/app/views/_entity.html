@@ -1,0 +1,9 @@
+﻿<tr id="{{e.id}}" data-ng-class="{gridRowColor: $even}" data-ng-repeat="e in vm.coefficients">
+    <td>
+        <div class="gridCell directionText">
+            <div style="font-weight: bold;">
+                {{e.id}} &nbsp; &nbsp;&nbsp;<input style="width:50px;" type="text" data-ng-model="e.value">&nbsp;&nbsp;&nbsp;<button data-ng-click="vm.deleteFilterCoeffs(e)">X</button>
+            </div>
+        </div>
+    </td>
+</tr>

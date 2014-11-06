@@ -1,0 +1,16 @@
+C:\CalcZd\CalculatorZd\Common.Api\obj\Release\Common.Api.csprojResolveAssemblyReference.cache
+C:\CalcZd\CalculatorZd\Common.Api\bin\Common.Api.dll.config
+C:\CalcZd\CalculatorZd\Common.Api\bin\Common.Api.dll
+C:\CalcZd\CalculatorZd\Common.Api\bin\Common.Api.pdb
+C:\CalcZd\CalculatorZd\Common.Api\bin\BO.dll
+C:\CalcZd\CalculatorZd\Common.Api\bin\Localization.WebResources.dll
+C:\CalcZd\CalculatorZd\Common.Api\bin\Microsoft.Practices.EnterpriseLibrary.Logging.dll
+C:\CalcZd\CalculatorZd\Common.Api\bin\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\CalcZd\CalculatorZd\Common.Api\bin\BO.pdb
+C:\CalcZd\CalculatorZd\Common.Api\bin\Localization.WebResources.pdb
+C:\CalcZd\CalculatorZd\Common.Api\bin\Microsoft.Practices.EnterpriseLibrary.Logging.xml
+C:\CalcZd\CalculatorZd\Common.Api\bin\Microsoft.Practices.EnterpriseLibrary.Common.xml
+C:\CalcZd\CalculatorZd\Common.Api\obj\Release\Common.Api.dll
+C:\CalcZd\CalculatorZd\Common.Api\obj\Release\Common.Api.pdb
+C:\CalcZd\CalculatorZd\Common.Api\bin\Newtonsoft.Json.dll
+C:\CalcZd\CalculatorZd\Common.Api\bin\Newtonsoft.Json.xml

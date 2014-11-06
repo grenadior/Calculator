@@ -1,0 +1,117 @@
+﻿<table>
+    <tbody data-bind="foreach: { data: entities, as: 'e' }">
+        <tr data-bind="attr: {id: e.id, class: $index()%2 == 0 ? 'gridRowColor' : ''}">
+            <td>
+                <a name="someFakeAnchor"></a>
+                <span style="margin-top: 10px;">
+                    <input type="checkbox">
+                </span>
+            </td>
+            <td>
+                <div class="gridCell directionText">
+                    <div style="font-weight: bold;">RUS</div>
+                    <a
+                        data-bind="attr: {title:'посмотреть маршрут ' + e.from.city +' - ' + e.to.city},
+                        text:e.distance + ' км'"
+                        target="_blank" style="color: #358B0A;" href="#"></a>
+                    <br>
+                </div>
+                <div class="cellBorder"></div>
+            </td>
+            <td>
+                <div class="gridCell">
+                    <div>
+                        <span data-bind="
+                            attr: {title: e.truck.details},
+                            text: e.truck.details"
+                            style="font-weight: bold;"></span>
+                    </div>
+                    <span data-bind="
+                        attr: {title: 'загр:' + e.truck.load},
+                        text: 'загр:' + e.truck.load"
+                        class="noteText"></span>
+                    <span data-bind="
+                        attr: {title: 'выгр:' + e.truck.unload},
+                        text: 'выгр:' + e.truck.unload"
+                        class="noteText"></span>
+                    <div class="noteText"
+                         data-bind="text: e.truck.note">
+                    </div>
+                </div>
+                <div class="cellBorder"></div>
+            </td>
+            <td id="loadDetailsCell">
+                <div class="gridCell">
+                    <div>
+                        <div>
+                            <div style="display: table-cell;">
+                                <div style="display: table-cell;"></div>
+                                <b data-bind="text: e.load.weight"></b> / <b data-bind="text: e.load.volume"></b>
+                            </div>
+                        </div>
+                        <div style="clear: both;">
+                        </div>
+                        <div style="float: left; padding-right: 5px;"
+                             data-bind="text: e.load.name">
+                        </div>
+                        <div style="float: left;"></div>
+                        <div style="clear: both;"></div>
+                        <div class="noteText" style="white-space: nowrap; float: left;"></div>
+                    </div>
+                </div>
+                <div class="cellBorder"></div>
+            </td>
+            <td>
+                <div class="gridCell">
+                    <div>
+                        <span class="lblCityNameMain" style="white-space: nowrap"
+                              data-bind="text: e.from.city"></span>
+                        <span class="noteText" style="white-space: nowrap;"
+                              data-bind="
+                                  visible: e.from.region,
+                                  text: e.from.region"></span>
+                        <div>
+                            <span data-bind="
+                                visible: e.from.street,
+                                text: e.from.street"></span>
+                        </div>
+                        <div></div>
+                        <b data-bind="visible: e.from.ready">готов</b> 
+                        <br>
+                    </div>
+                </div>
+                <div class="cellBorder"></div>
+            </td>
+            <td>
+                <div class="gridCell">
+                    <div>
+                        <div style="white-space: nowrap" class="lblCityNameMain"
+                             data-bind="text: e.to.city">
+                        </div>
+                        <div class="noteText" style="white-space: nowrap"
+                             data-bind="
+                             visible: e.to.region,
+                             text: e.to.region">
+                        </div>
+                        <div data-bind="visible: e.to.street">
+                            <span data-bind="text: e.to.street"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="cellBorder"></div>
+
+            </td>
+            <td>
+                <div class="gridCell" style="border-right: none 0px !important;"
+                    data-bind="foreach: {data: e.rates, as: 'r'}">
+                        <div style="white-space: nowrap;">
+                            <span style="white-space: nowrap;" data-bind="text: r.cost"></span>
+                            <span data-bind="text: r.note"></span>
+                            <small class="noteText" data-bind="text: '(' + (r.cost/e.distance).toFixed(2) + ' р/км)'"></small>
+                        </div>
+                </div>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
